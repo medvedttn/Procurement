@@ -68,7 +68,7 @@ namespace POEApi.Model
 
         public override bool IsCompatibleType(Gear item)
         {
-            if (item.TypeLine.ToLower().Contains(POEApi.Model.ServerTypeRes.GearTypeRing.ToLower()) && !incompatibleTypes.Any(t => item.TypeLine.Contains(t)))
+            if (item.TypeLine.ToLower().Contains(POEApi.Model.ServerTypeRes.GearTypeRing.ToLower()) && !incompatibleTypes.Any(t => item.TypeLine.ToLower().Contains(t.ToLower())))
                 return true;
 
             return false;
@@ -332,6 +332,23 @@ namespace POEApi.Model
         {
             generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeWand);
             generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeHorn);
+        }
+    }
+
+    public class DivinationCardRunner : GearTypeRunnerBase
+    {
+        public DivinationCardRunner()
+            : base(GearType.DivinationCard, Settings.GearBaseTypes[GearType.DivinationCard])
+        {
+        }
+    }
+
+    public class JewelRunner : GearTypeRunnerBase
+    {
+        public JewelRunner()
+            : base(GearType.Jewel, new List<string>())
+        {
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeJewel);
         }
     }
 }

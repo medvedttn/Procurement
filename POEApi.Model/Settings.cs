@@ -42,7 +42,6 @@ namespace POEApi.Model
                 Lists = settingsFile.Element("Lists").Elements("List").ToDictionary(list => list.Attribute("name").Value, list => list.Elements("Item").Select(e => e.Attribute("value").Value).ToList());
 
             loadBuyouts();
-
             loadPopularGemsSettings();
             loadGearTypeData();
             loadShopSettings();

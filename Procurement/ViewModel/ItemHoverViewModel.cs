@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using POEApi.Model;
+using System.Windows.Controls;
+using System.Windows.Media;
+using Procurement.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows;
 
 namespace Procurement.ViewModel
 {
@@ -29,6 +34,7 @@ namespace Procurement.ViewModel
         public List<string> CraftedMods { get; set; }
 
         public bool HasCraftedMods { get; private set; }
+        public ItemDisplayDivinationCard ItemHoverDivinationCard;
 
 
         public ItemHoverViewModel(Item item)
@@ -90,6 +96,43 @@ namespace Procurement.ViewModel
 
                 DescriptionText = builder.ToString();
             }
+        }
+
+        internal void CreateItemPopup(UIElement target, Item item)
+        {
+            var popup = new Popup
+            {
+                AllowsTransparency = true,
+                PopupAnimation = PopupAnimation.Fade,
+                StaysOpen = true,
+                PlacementTarget = target
+            };
+
+            // Use a grid as child to be able to disconnect the hover control properly. 
+            var grid = new Grid();
+            popup.Child = grid;
+
+            target.MouseEnter += (o, e) =>
+            {
+                if (item.ArtFilename != null)
+                {
+                    ItemHoverDivinationCard = new ItemDisplayDivinationCard();
+                    ItemHoverDivinationCard.DataContext = ItemHoverViewModelFactory.Create(item);
+                    grid.Children.Add(ItemHoverDivinationCard);
+                }
+
+                //allow keyboard input for selected item
+                target.Focusable = true;
+                target.Focus();
+
+                popup.IsOpen = true;
+            };
+
+            target.MouseLeave += (o, e) =>
+            {
+                popup.IsOpen = false;
+                grid.Children.Clear();
+            };
         }
     }
 }

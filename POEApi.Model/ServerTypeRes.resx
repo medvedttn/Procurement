@@ -519,4 +519,7 @@
   <data name="CurrencyTypeShardText" xml:space="preserve">
     <value>Shard</value>
   </data>
+  <data name="GearTypeJewel" xml:space="preserve">
+    <value>Jewel</value>
+  </data>
 </root>

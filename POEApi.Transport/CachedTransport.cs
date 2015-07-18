@@ -74,12 +74,12 @@ namespace POEApi.Transport
             return ms;
         }
 
-        public Stream GetCharacters(string server_type)
+        public Stream GetCharacters(string server_type, string accname)
         {
             string key ="characterdata";
 
             if (!userCacheService.Exists(key))
-                userCacheService.Set(key, innerTranport.GetCharacters(server_type));
+                userCacheService.Set(key, innerTranport.GetCharacters(server_type,accname));
 
             return userCacheService.Get(key);
         }

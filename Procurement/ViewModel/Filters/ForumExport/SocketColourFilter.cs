@@ -55,7 +55,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public OneRedSocket()
             : base("S", 1, "At Least 1 Red Socket", "Gear with 1 or more red sockets")
         {
-            this.keyword = "Как минимум 1 красный сокет";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType=="Garena (RU)")
+                this.keyword = "Как минимум 1 красный сокет";
         }
     }
 
@@ -64,7 +65,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public OneGreenSocket()
             : base("D", 1, "At Least 1 Green Socket", "Gear with 1 or more green sockets")
         {
-            this.keyword = "Как минимум 1 зеленый сокет";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 1 зеленый сокет";
         }
     }
 
@@ -73,7 +75,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public OneBlueSocket()
             : base("I", 1, "At Least 1 Blue Socket", "Gear with 1 or more blue sockets")
         {
-            this.keyword = "Как минимум 1 синий сокет";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 1 синий сокет";
         }
     }
 
@@ -82,7 +85,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public TwoRedSockets()
             : base("S", 2, "At Least 2 Red Sockets", "Gear with 2 or more red sockets")
         {
-            this.keyword = "Как минимум 2 красных сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 2 красных сокета";
         }
     }
 
@@ -91,7 +95,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public TwoGreenSockets()
             : base("D", 2, "At Least 2 Green Sockets", "Gear with 2 or more green sockets")
         {
-            this.keyword = "Как минимум 2 зеленых сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 2 зеленых сокета";
         }
     }
 
@@ -100,7 +105,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public TwoBlueSockets()
             : base("I", 2, "At Least 2 Blue Sockets", "Gear with 2 or more blue sockets")
         {
-            this.keyword = "Как минимум 2 синих сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 2 синих сокета";
         }
     }
 
@@ -109,7 +115,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public ThreeRedSockets()
             : base("S", 3, "At Least 3 Red Sockets", "Gear with 3 or more red sockets")
         {
-            this.keyword = "Как минимум 3 красных сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 3 красных сокета";
         }
     }
 
@@ -118,7 +125,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public ThreeGreenSockets()
             : base("D", 3, "At Least 3 Green Sockets", "Gear with 3 or more green sockets")
         {
-            this.keyword = "Как минимум 3 зеленых сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 3 зеленых сокета";
         }
     }
 
@@ -127,7 +135,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public ThreeBlueSockets()
             : base("I", 3, "At Least 3 Blue Sockets", "Gear with 3 or more blue sockets")
         {
-            this.keyword = "Как минимум 3 синих сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 3 синих сокета";
         }
     }
 
@@ -136,7 +145,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public FourRedSockets()
             : base("S", 4, "At Least 4 Red Sockets", "Gear with 4 or more red sockets")
         {
-            this.keyword = "Как минимум 4 красных сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 4 красных сокета";
         }
     }
 
@@ -145,7 +155,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public FourGreenSockets()
             : base("D", 4, "At Least 4 Green Sockets", "Gear with 4 or more green sockets")
         {
-            this.keyword = "Как минимум 4 зеленых сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 4 зеленых сокета";
         }
     }
 
@@ -154,7 +165,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public FourBlueSockets()
             : base("I", 4, "At Least 4 Blue Sockets", "Gear with 4 or more blue sockets")
         {
-            this.keyword = "Как минимум 4 синих сокета";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 4 синих сокета";
         }
     }
 
@@ -163,7 +175,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public FiveRedSockets()
             : base("S", 5, "At Least 5 Red Sockets", "Gear with 5 or more red sockets")
         {
-            this.keyword = "Как минимум 5 красных сокетов";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 5 красных сокетов";
         }
     }
 
@@ -172,7 +185,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public FiveGreenSockets()
             : base("D", 5, "At Least 5 Green Sockets", "Gear with 5 or more green sockets")
         {
-            this.keyword = "Как минимум 5 зеленых сокетов";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 5 зеленых сокетов";
         }
     }
 
@@ -181,7 +195,8 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public FiveBlueSockets()
             : base("I", 5, "At Least 5 Blue Sockets", "Gear with 5 or more blue sockets")
         {
-            this.keyword = "Как минимум 5 синих сокетов";
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.keyword = "Как минимум 5 синих сокетов";
         }
     }
 }

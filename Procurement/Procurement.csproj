@@ -94,6 +94,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ApplicationState.cs" />
+    <Compile Include="Controls\ItemDisplayDivinationCard.xaml.cs">
+      <DependentUpon>ItemDisplayDivinationCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SetTabBuyoutView.xaml.cs">
       <DependentUpon>SetTabBuyoutView.xaml</DependentUpon>
     </Compile>
@@ -409,6 +412,10 @@
     <Resource Include="Resources\fontin-smallcaps-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ItemDisplayDivinationCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\SetTabBuyoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -728,6 +735,9 @@
     <Resource Include="Images\buttons_ru\btn_trading.png" />
     <Resource Include="Images\buttons_ru\donate-hover.png" />
     <Resource Include="Images\buttons_ru\donate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ItemHover\DivinationCard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

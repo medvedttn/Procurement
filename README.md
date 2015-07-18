@@ -19,5 +19,5 @@ Procurement is a Windows application for the online game Path Of Exile, that log
 
 * Manual item selection by one to sell from any tab
 * Copy item data as text (press Ctrl+C on item)
+* Weapon DPS calculator in item header (hold SHIFT and move mouse over items)
 * Support Garena+ RU (CIS version)
-

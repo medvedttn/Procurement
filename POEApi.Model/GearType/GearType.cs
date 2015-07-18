@@ -23,6 +23,8 @@
         Wand,
         Flask,
         Map,
+        DivinationCard,
+        Jewel,
         QuestItem
     }
     

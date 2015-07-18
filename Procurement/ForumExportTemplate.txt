@@ -22,6 +22,15 @@ Please message me here or ingame if something catches your eye. My IGN is {IGN}.
 [spoiler="          70-78          "]
 {70Maps}{71Maps}{72Maps}{73Maps}{74Maps}{75Maps}{76Maps}{77Maps}{78Maps}
 [/spoiler]
+[spoiler="          79-82          "]
+{79Maps}{80Maps}{81Maps}{82Maps}
+[/spoiler]
+[/spoiler]
+[spoiler="          Jewels         "]
+{NormalJewel}{MagicJewel}{RareJewel}{UniqueJewel}
+[/spoiler]
+[spoiler="          Divination Cards      "]
+{DivinationCard}
 [/spoiler]
 [spoiler="          Gems          "]
 [spoiler="          Quality Gems          "]

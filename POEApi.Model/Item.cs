@@ -28,8 +28,8 @@ namespace POEApi.Model
         public int H { get; private set; }
         public string IconURL { get; private set; }
         public string League { get; private set; }
-        public string Name { get; private set; }
-        public string TypeLine { get; private set; }
+        public string Name { get; set; }
+        public string TypeLine { get; set; }
         public string DescrText { get; private set; }
         public int X { get; set; }
         public int Y { get; set; }
@@ -52,6 +52,7 @@ namespace POEApi.Model
         public string Character { get; set; }
 
         public bool IsSelectedManually { get; set; }
+        public string ArtFilename { get; private set; }
 
         protected Item(JSONProxy.Item item)
         {
@@ -94,6 +95,7 @@ namespace POEApi.Model
             this.Character = string.Empty;
 
             this.IsSelectedManually = false;
+            this.ArtFilename = item.ArtFilename;
 
             //TODO : get itemlvl from JSON (currently not returned by JSON)
         }
@@ -123,6 +125,7 @@ namespace POEApi.Model
                 f7 = getConcreteHash()
             };
 
+            //TODO: make GetHashCode stable and portable (MD5,SHA1/2).
             return anonomousType.GetHashCode();
         }
 

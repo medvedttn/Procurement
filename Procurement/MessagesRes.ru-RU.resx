@@ -283,7 +283,7 @@
     <value> сохранено</value>
   </data>
   <data name="UnableToSaveHoverImageToDisk" xml:space="preserve">
-    <value>Ошибка сохраниния всплывающего изображения на диск : </value>
+    <value>Ошибка сохранения всплывающего изображения на диск : </value>
   </data>
   <data name="ErrorSavingImageErrorLoggedToDebugInfoLog" xml:space="preserve">
     <value>Ошибка сохранения изображения, подробности в файле DebugInfo.log</value>
@@ -296,5 +296,29 @@
   </data>
   <data name="ErrorCheckingForUpdatesDetailsLoggedToDebugInfoLog" xml:space="preserve">
     <value>Ошибка проверки обновлений, подробности в файле DebugInfo.log</value>
+  </data>
+  <data name="wDPSAdds" xml:space="preserve">
+    <value>Добавляет</value>
+  </data>
+  <data name="wDPSAttacksPerSecond" xml:space="preserve">
+    <value>Атак в секунду</value>
+  </data>
+  <data name="wDPSColdDamage" xml:space="preserve">
+    <value>к урону от холода</value>
+  </data>
+  <data name="wDPSFireDamage" xml:space="preserve">
+    <value>к урону от огня</value>
+  </data>
+  <data name="wDPSIncreasedPhysicalDamage" xml:space="preserve">
+    <value>% увеличение физического урона</value>
+  </data>
+  <data name="wDPSLightningDamage" xml:space="preserve">
+    <value>к урону от молнии</value>
+  </data>
+  <data name="wDPSPhysDamageProperty" xml:space="preserve">
+    <value>Физический урон</value>
+  </data>
+  <data name="wDPSPhysicalDamage" xml:space="preserve">
+    <value>физического урона</value>
   </data>
 </root>

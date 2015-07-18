@@ -232,6 +232,15 @@ namespace POEApi.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Jewel.
+        /// </summary>
+        internal static string GearTypeJewel {
+            get {
+                return ResourceManager.GetString("GearTypeJewel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mask.
         /// </summary>
         internal static string GearTypeMask {

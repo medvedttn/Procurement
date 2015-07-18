@@ -142,7 +142,7 @@
     <value>перемен</value>
   </data>
   <data name="OrbTypeArmourerScrap" xml:space="preserve">
-    <value>Деталь Доспеха</value>
+    <value>Деталь доспеха</value>
   </data>
   <data name="OrbTypeAugmentation" xml:space="preserve">
     <value>Сфера усиления</value>
@@ -311,5 +311,8 @@
   </data>
   <data name="CurrencyTypeShardText" xml:space="preserve">
     <value>Осколок</value>
+  </data>
+  <data name="GearTypeJewel" xml:space="preserve">
+    <value>Самоцвет</value>
   </data>
 </root>

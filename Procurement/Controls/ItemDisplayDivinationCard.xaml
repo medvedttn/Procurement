@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Procurement.Controls.ItemDisplayDivinationCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Procurement.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="409" d:DesignWidth="268">
+    <Control.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontFamily" Value="../Resources/#Fontin SmallCaps" />
+        </Style>
+    </Control.Resources>
+    
+    <Grid x:Name="MainGridDivinationCard" Width="268" Height="409">
+        <Image Source="/Images/ItemHover/DivinationCard.png"></Image>
+        <TextBlock Name="txtTypeLine" Text="CardName"  Margin="24,13,22,373" FontSize="14" TextAlignment="Center" VerticalAlignment="Center" Height="23" Foreground="Black" />
+        
+        <Image x:Name="imgArtFilename" Stretch="Uniform"  HorizontalAlignment="Center"  VerticalAlignment="Top" Visibility="Visible" Margin="0,28,0,0" Height="174" Width="268" Panel.ZIndex="-1">
+        </Image>
+        
+        <TextBlock Name="txtStackSize" Text="1/2" Margin="24,190,198,192" Foreground="White" FontSize="16" TextAlignment="Center"></TextBlock>
+        <TextBlock Name="txtFlavText" Text="FlavText"  Margin="24,287,22,29" FontSize="14" Foreground="#FFEF551D" TextAlignment="Center" FontStyle="Italic" />
+        <TextBlock Name="txtItemName" Text="ItemName"  Margin="24,223,22,138" FontSize="14" Foreground="#FFEF551D" TextAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</UserControl>

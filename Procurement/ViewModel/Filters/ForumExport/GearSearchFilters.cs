@@ -192,4 +192,24 @@ namespace Procurement.ViewModel.Filters.ForumExport
                 this.Keyword = "Флаконы";
         }
     }
+
+    class DivinationCardFilter : GearTypeFilter
+    {
+        public DivinationCardFilter()
+            : base(GearType.DivinationCard, "Divination Cards")
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.Keyword = "Гадальные карты";
+        }
+    }
+
+    class JewelFilter : GearTypeFilter
+    {
+        public JewelFilter()
+            : base(GearType.Jewel, "Jewels")
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                this.Keyword = "Самоцветы";
+        }
+    }
 }

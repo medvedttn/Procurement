@@ -63,6 +63,8 @@ namespace POEApi.Model
 
             POEApi.Model.Settings.loadGearTypeData();
             POEApi.Model.Settings.loadPopularGemsSettings();
+            if (ServerType == "Garena (RU)") 
+                POEApi.Model.Settings.Lists["MyLeagues"] = new List<string> { "Стандарт", "Одна жизнь", "Отряды", "Буря" };
 
             if (offline) return true;
             
@@ -83,7 +85,7 @@ namespace POEApi.Model
             }
             else if (AccountName == "")
             {
-                throw new LogonFailedException("Account name from HTML page is empty! You can enter AccountName directly in settings file.");
+                throw new LogonFailedException("Account name from HTML page is empty!");
             }
             
             return true;
@@ -227,7 +229,7 @@ namespace POEApi.Model
             List<JSONProxy.Character> characters;
 
 
-            using (XmlDictionaryReader json_reader = JsonReaderWriterFactory.CreateJsonReader((transport.GetCharacters(ServerType) as MemoryStream).ToArray(), XmlDictionaryReaderQuotas.Max))
+            using (XmlDictionaryReader json_reader = JsonReaderWriterFactory.CreateJsonReader((transport.GetCharacters(ServerType, AccountName) as MemoryStream).ToArray(), XmlDictionaryReaderQuotas.Max))
                 characters = (List<JSONProxy.Character>)serialiser.ReadObject(json_reader);
 
             return characters.Select(c => new Character(c)).ToList();

@@ -297,4 +297,28 @@ It is either missing from settings.xml or incorrectly configured. The default se
   <data name="ErrorCheckingForUpdatesDetailsLoggedToDebugInfoLog" xml:space="preserve">
     <value>Error checking for updates, details logged to DebugInfo.log</value>
   </data>
+  <data name="wDPSPhysicalDamage" xml:space="preserve">
+    <value>Physical Damage</value>
+  </data>
+  <data name="wDPSAttacksPerSecond" xml:space="preserve">
+    <value>Attacks per Second</value>
+  </data>
+  <data name="wDPSIncreasedPhysicalDamage" xml:space="preserve">
+    <value>% increased Physical Damage</value>
+  </data>
+  <data name="wDPSAdds" xml:space="preserve">
+    <value>Adds</value>
+  </data>
+  <data name="wDPSFireDamage" xml:space="preserve">
+    <value>Fire Damage</value>
+  </data>
+  <data name="wDPSColdDamage" xml:space="preserve">
+    <value>Cold Damage</value>
+  </data>
+  <data name="wDPSLightningDamage" xml:space="preserve">
+    <value>Lightning Damage</value>
+  </data>
+  <data name="wDPSPhysDamageProperty" xml:space="preserve">
+    <value>Physical Damage</value>
+  </data>
 </root>

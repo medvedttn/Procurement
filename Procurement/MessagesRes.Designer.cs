@@ -586,6 +586,78 @@ namespace Procurement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adds.
+        /// </summary>
+        internal static string wDPSAdds {
+            get {
+                return ResourceManager.GetString("wDPSAdds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attacks per Second.
+        /// </summary>
+        internal static string wDPSAttacksPerSecond {
+            get {
+                return ResourceManager.GetString("wDPSAttacksPerSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cold Damage.
+        /// </summary>
+        internal static string wDPSColdDamage {
+            get {
+                return ResourceManager.GetString("wDPSColdDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fire Damage.
+        /// </summary>
+        internal static string wDPSFireDamage {
+            get {
+                return ResourceManager.GetString("wDPSFireDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % increased Physical Damage.
+        /// </summary>
+        internal static string wDPSIncreasedPhysicalDamage {
+            get {
+                return ResourceManager.GetString("wDPSIncreasedPhysicalDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lightning Damage.
+        /// </summary>
+        internal static string wDPSLightningDamage {
+            get {
+                return ResourceManager.GetString("wDPSLightningDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Physical Damage.
+        /// </summary>
+        internal static string wDPSPhysDamageProperty {
+            get {
+                return ResourceManager.GetString("wDPSPhysDamageProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Physical Damage.
+        /// </summary>
+        internal static string wDPSPhysicalDamage {
+            get {
+                return ResourceManager.GetString("wDPSPhysicalDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You need to select at least one tab to update your shop!.
         /// </summary>
         internal static string YouNeedToSelectAtLeastOneTabToUpdateYourShop {

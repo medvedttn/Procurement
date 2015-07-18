@@ -8,6 +8,8 @@ using System.Windows.Media;
 using POEApi.Model;
 using Procurement.Controls;
 using Procurement.Utility;
+using System.Windows.Input;
+using System.Globalization;
 
 namespace Procurement.ViewModel
 {
@@ -22,6 +24,14 @@ namespace Procurement.ViewModel
     public class ItemDisplayViewModel
     {
         public static ItemHover ItemHover = new ItemHover();
+        public static ItemDisplayDivinationCard ItemHoverDivinationCard=new ItemDisplayDivinationCard();
+
+        public struct wDPS
+        {
+            public string dps;
+            public string p_dps;
+            public string e_dps;
+        }
 
         public Item Item { get; set; }
 
@@ -47,7 +57,7 @@ namespace Procurement.ViewModel
                 Source = ApplicationState.BitmapCache[Item.IconURL],
                 Stretch = Stretch.None
             };
-
+            
             CreateItemPopup(img, Item);
 
             return img;
@@ -225,14 +235,39 @@ namespace Procurement.ViewModel
 
             target.MouseEnter += (o, e) =>
             {
-                ItemHover.DataContext = ItemHoverViewModelFactory.Create(item);
-                grid.Children.Add(ItemHover);
+                //user press SHIFT while moving mouse
+                if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+                {
+                    wDPS wdps = getWeaponDPS(item);
+                    Item dps_item = (Item)item.Clone();
+                    dps_item.Name = "DPS@20q : " + wdps.dps;
+                    dps_item.TypeLine = "pDPS : "+ wdps.p_dps + "; eDPS : "+wdps.e_dps;
+                    
+                    ItemHover.DataContext = ItemHoverViewModelFactory.Create(dps_item);
+                    grid.Children.Add(ItemHover);
+                    popup.IsOpen = true;
+                }
+                else
+                {
+                    //TODO: more care check for DivinationCard type
+                    if (item.ArtFilename != null)
+                    {
+                        ItemHoverDivinationCard = new ItemDisplayDivinationCard();
+                        ItemHoverDivinationCard.DataContext = ItemHoverViewModelFactory.Create(item);
+                        grid.Children.Add(ItemHoverDivinationCard);
+                    }
+                    else
+                    {
+                        ItemHover.DataContext = ItemHoverViewModelFactory.Create(item);
+                        grid.Children.Add(ItemHover);
+                    }
 
-                //allow keyboard input for selected item
-                target.Focusable = true;
-                target.Focus();
+                    //allow keyboard input for selected item
+                    target.Focusable = true;
+                    target.Focus();
 
-                popup.IsOpen = true;
+                    popup.IsOpen = true;
+                }
             };
 
             target.MouseLeave += (o, e) =>
@@ -243,7 +278,7 @@ namespace Procurement.ViewModel
 
             target.KeyDown += (o, e) =>
             {
-                if (e.Key == System.Windows.Input.Key.C && e.KeyboardDevice.Modifiers == System.Windows.Input.ModifierKeys.Control)
+                if (e.Key == System.Windows.Input.Key.C && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
                 {
                     //user press CTRL+C
                     string text_item = ItemToText(item);
@@ -252,8 +287,6 @@ namespace Procurement.ViewModel
                         Clipboard.SetText(text_item, TextDataFormat.UnicodeText);
                     }
                 }
-                
-                //TODO: weapon DPS calculator on hover with SHIFT
             };
         }
 
@@ -261,8 +294,6 @@ namespace Procurement.ViewModel
         {
             string result_text = "";
             
-            //TODO: add "(augmented)" text?
-
             try
             {
                 Gear item_gear = null;
@@ -469,6 +500,170 @@ namespace Procurement.ViewModel
             foreach (var turple in possible)
                 if (turple.Item1 < maxWidth && turple.Item2 < maxHeight)
                     yield return turple;
+        }
+
+        private wDPS getWeaponDPS(Item item)
+        {
+            wDPS str_dps = new wDPS();
+            try
+            {
+                Gear gear = item as Gear;
+                if (gear != null)
+                {
+                    //check that item is weapon GearType
+                    if (gear.GearType == GearType.Axe || gear.GearType == GearType.Bow || gear.GearType == GearType.Claw ||
+                        gear.GearType == GearType.Dagger || gear.GearType == GearType.Mace || gear.GearType == GearType.Sceptre ||
+                        gear.GearType == GearType.Staff || gear.GearType == GearType.Sword || gear.GearType == GearType.Wand)
+                    {
+                        int dmin = 0, dmax = 0, amin = 0, amax = 0, fmin = 0, fmax = 0, cmin = 0, cmax = 0, lmin = 0, lmax = 0;
+                        int percent_dmg = 0;
+                        int elem_dmg = 0;
+                        float atk_speed = 0, base_min = 0, base_max = 0, p_min = 0, p_max = 0,
+                            dps = 0, p_dps = 0, e_dps = 0;
+
+                        foreach (Property curr_prop in item.Properties)
+                        {
+                            if (curr_prop.Name == Procurement.MessagesRes.wDPSPhysDamageProperty)
+                            {
+                                string[] arr_phys_dps = curr_prop.Values[0].Item1.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                dmin = int.Parse(arr_phys_dps[0]);
+                                dmax = int.Parse(arr_phys_dps[1]);
+                            }
+                            else if (curr_prop.Name.Contains(Procurement.MessagesRes.wDPSAttacksPerSecond))
+                            {
+                                atk_speed = float.Parse(curr_prop.Values[0].Item1, new CultureInfo("en-US"));
+                            }
+                        }
+
+                        if (item.Explicitmods != null)
+                        {
+                            foreach (string curr_mod in item.Explicitmods)
+                            {
+                                if (curr_mod.Contains(Procurement.MessagesRes.wDPSIncreasedPhysicalDamage))
+                                {
+                                    int percent_end_pos = 0;
+                                    percent_end_pos = curr_mod.IndexOf("%");
+                                    percent_dmg = int.Parse(curr_mod.Substring(0, percent_end_pos));
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSPhysicalDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSPhysicalDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    amin = int.Parse(arr_mod[0]);
+                                    amax = int.Parse(arr_mod[1]);
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSFireDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSFireDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    fmin = int.Parse(arr_mod[0]);
+                                    fmax = int.Parse(arr_mod[1]);
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSColdDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSColdDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    cmin = int.Parse(arr_mod[0]);
+                                    cmax = int.Parse(arr_mod[1]);
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSLightningDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSLightningDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    lmin = int.Parse(arr_mod[0]);
+                                    lmax = int.Parse(arr_mod[1]);
+                                }
+                            }
+                        }
+
+                        if (item.CraftedMods != null)
+                        {
+                            foreach (string curr_mod in item.CraftedMods)
+                            {
+                                if (curr_mod.Contains(Procurement.MessagesRes.wDPSIncreasedPhysicalDamage))
+                                {
+                                    int percent_end_pos = 0;
+                                    percent_end_pos = curr_mod.IndexOf("%");
+                                    percent_dmg = int.Parse(curr_mod.Substring(0, percent_end_pos));
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSPhysicalDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1; ;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSPhysicalDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    amin = int.Parse(arr_mod[0]);
+                                    amax = int.Parse(arr_mod[1]);
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSFireDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1; ;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSFireDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    fmin = int.Parse(arr_mod[0]);
+                                    fmax = int.Parse(arr_mod[1]);
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSColdDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSColdDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    cmin = int.Parse(arr_mod[0]);
+                                    cmax = int.Parse(arr_mod[1]);
+                                }
+                                else if (curr_mod.Contains(Procurement.MessagesRes.wDPSAdds) && curr_mod.Contains(Procurement.MessagesRes.wDPSLightningDamage))
+                                {
+                                    int numbers_start_pos = 0, numbers_end_pos = 0;
+                                    numbers_start_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSAdds) + Procurement.MessagesRes.wDPSAdds.Length + 1;
+                                    numbers_end_pos = curr_mod.IndexOf(Procurement.MessagesRes.wDPSLightningDamage);
+                                    string[] arr_mod = curr_mod.Substring(numbers_start_pos, numbers_end_pos - numbers_start_pos).Trim().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                                    lmin = int.Parse(arr_mod[0]);
+                                    lmax = int.Parse(arr_mod[1]);
+                                }
+                            }
+                        }
+
+                        elem_dmg = fmin + fmax + cmin + cmax + lmin + lmax;
+                        base_min = dmin / (1f + (percent_dmg + item.Quality) / 100f) - amin;
+                        base_max = dmax / (1f + (percent_dmg + item.Quality) / 100f) - amax;
+
+                        p_min = (base_min + amin) * (1f + percent_dmg / 100f + 0.2f);
+                        p_max = (base_max + amax) * (1f + percent_dmg / 100f + 0.2f);
+
+                        p_dps = (p_min + p_max) / 2 * atk_speed;
+                        e_dps = elem_dmg / 2 * atk_speed;
+                        dps = p_dps + e_dps;
+
+                        str_dps.dps = dps.ToString("f");
+                        str_dps.e_dps = e_dps.ToString("f");
+                        str_dps.p_dps = p_dps.ToString("f");
+                        return str_dps;
+                    }
+                    else
+                    {
+                        str_dps.dps = "Not a weapon!";
+                        return str_dps;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                str_dps.dps = "DPS calculation error";
+                str_dps.p_dps = ex.Message;
+                return str_dps;
+            }
+
+            return str_dps;
         }
     }
 }
