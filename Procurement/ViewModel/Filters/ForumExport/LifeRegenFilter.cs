@@ -4,7 +4,13 @@
     {
         public LifeRegenFilter()
             : base("Life Regenerated per second")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+
+                this.keyword = "регенерации здоровья в секунду";
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -13,7 +19,17 @@
 
         public override string Keyword
         {
-            get { return "Life regen"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Регенерация здоровья";
+                }
+                else
+                {
+                    return "Life regen";
+                }
+            }
         }
 
         public override string Help

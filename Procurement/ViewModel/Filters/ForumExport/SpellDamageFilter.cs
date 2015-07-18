@@ -9,7 +9,13 @@ namespace Procurement.ViewModel.Filters.ForumExport
     {
         public SpellDamageFilter()
             : base("increased Spell Damage")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.keyword = "увеличение урона чар";
+                //TODO: "увеличение урона от чар"
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -18,7 +24,17 @@ namespace Procurement.ViewModel.Filters.ForumExport
 
         public override string Keyword
         {
-            get { return "Spell Damage"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Урон от чар";
+                }
+                else
+                {
+                    return "Spell Damage";
+                }
+            }
         }
 
         public override string Help

@@ -5,8 +5,10 @@
       <xs:sequence>
         <xs:element ref="Ratios" minOccurs="1" maxOccurs="1" />
         <xs:element ref="PopularGems" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="PopularGems_RU" minOccurs="1" maxOccurs="1" />
         <xs:element ref="UserSettings" minOccurs="1" maxOccurs="1" />
         <xs:element ref="ProxySettings" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="ShopSettings" minOccurs="1" maxOccurs="1" />
         <xs:element ref="Lists" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
     </xs:complexType>
@@ -26,7 +28,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
- <xs:element name="UserSettings">
+  <xs:element name="UserSettings">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="Setting">
@@ -45,12 +47,13 @@
               <xs:element name="EmbedBuyouts" type="EmbedBuyouts" minOccurs="1" maxOccurs="1" />
               <xs:element name="BuyoutItemsOnlyVisibleInBuyoutsTag" type="BuyoutItemsOnlyVisibleInBuyoutsTag" minOccurs="1" maxOccurs="1" />
               <xs:element name="CheckForUpdates" type="CheckForUpdates" minOccurs="1" maxOccurs="1" />
+              <xs:element name="SeverType" type="ServerType" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
-  </xs:element> 
+  </xs:element>
   <xs:element name="ProxySettings">
     <xs:complexType>
       <xs:sequence>
@@ -67,6 +70,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ShopSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Shop">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="League" type="xs:string" minOccurs="1" maxOccurs="1" />
+              <xs:element name="ThreadId" type="xs:string" minOccurs="1" maxOccurs="1" />
+              <xs:element name="ThreadTitle" type="xs:string" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Lists">
     <xs:complexType>
       <xs:sequence>
@@ -75,6 +93,17 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="PopularGems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Gem" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PopularGems_RU">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="Gem" minOccurs="1" maxOccurs="unbounded">
@@ -154,6 +183,10 @@
   <xs:complexType name="Domain">
     <xs:attribute name="name" fixed="Domain" type="xs:string" use="required"/>
     <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="ServerType">
+    <xs:attribute name="name" fixed="ServerType" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="optional"/>
   </xs:complexType>
 
   <xs:element name="Item">

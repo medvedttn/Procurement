@@ -107,7 +107,17 @@ namespace Procurement.ViewModel
 
         public string Total
         {
-            get { return "Total " + configuredOrbType.ToString() + " in Orbs : " + ApplicationState.Stash[ApplicationState.CurrentLeague].GetTotal(configuredOrbType).ToString(); }
+            get 
+            {
+                if (ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Всего " + configuredOrbType.ToString() + " в сферах : " + ApplicationState.Stash[ApplicationState.CurrentLeague].GetTotal(configuredOrbType).ToString("F2", new System.Globalization.CultureInfo("en-US"));
+                }
+                else
+                {
+                    return "Total " + configuredOrbType.ToString() + " in Orbs : " + ApplicationState.Stash[ApplicationState.CurrentLeague].GetTotal(configuredOrbType).ToString("F2", new System.Globalization.CultureInfo("en-US"));
+                }
+            }
         }
 
         public Dictionary<OrbType, double> TotalDistibution
@@ -163,17 +173,17 @@ namespace Procurement.ViewModel
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine();
-                sb.AppendLine(string.Format("Error: attempted to get items for the non existant league '{0}'", ApplicationState.CurrentLeague));
-                sb.AppendLine("Current leagues are:");
+                sb.AppendLine(string.Format(Procurement.MessagesRes.ErrorAttemptedToGetItemsForTheNonExistantLeague0, ApplicationState.CurrentLeague));
+                sb.AppendLine(Procurement.MessagesRes.CurrentLeaguesAre);
                 foreach (var item in ApplicationState.Leagues)
                     sb.AppendLine(item);
                 sb.AppendLine();
-                sb.AppendLine("Exception details : ");
+                sb.AppendLine(Procurement.MessagesRes.ExceptionDetails);
                 sb.AppendLine(kex.ToString());
 
                 Logger.Log(sb.ToString());
 
-                MessageBox.Show(string.Format("Error getting items for {0} league, are you sure your league settings are correct?", ApplicationState.CurrentLeague), "Error loading items", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(string.Format(Procurement.MessagesRes.ErrorGettingItemsFor0LeagueAreYouSureYourLeagueSettings, ApplicationState.CurrentLeague), Procurement.MessagesRes.ErrorLoadingItems, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private IEnumerable<string> getSearchTerms(Item item)
@@ -290,11 +300,15 @@ namespace Procurement.ViewModel
         private void addContextMenu(TabItem item, StashControl itemStash)
         {
             ContextMenu contextMenu = new ContextMenu();
+            string strRefresh = "Refresh";
+            string strRefresh_ru = "Обновить";
+            string strSetTabBuyout = "Set Tabwide Buyout";
+            string strSetTabBuyout_ru = "Установить цену на вкладку";
 
             if (!ApplicationState.Model.Offline)
-                contextMenu.Items.Add(getMenuItem(itemStash, "Refresh", refresh_Click));
+                contextMenu.Items.Add(getMenuItem(itemStash, LoginWindowViewModel.ServerType=="Garena (RU)" ? strRefresh_ru : strRefresh, refresh_Click));
             
-            contextMenu.Items.Add(getMenuItem(itemStash, "Set Tabwide Buyout", setTabBuyout_Click));
+            contextMenu.Items.Add(getMenuItem(itemStash, LoginWindowViewModel.ServerType == "Garena (RU)" ? strSetTabBuyout_ru : strSetTabBuyout, setTabBuyout_Click));
 
             item.ContextMenu = contextMenu;
         }
@@ -337,8 +351,8 @@ namespace Procurement.ViewModel
             }
             catch (Exception ex)
             {
-                Logger.Log("Exception in setTabBuyout_Click: " + ex.ToString());
-                MessageBox.Show("Error setting tabwide buyout, error details logged to DebugInfo.log, please open a ticket at https://github.com/Stickymaddness/Procurement/issues", "Error setting tabwide buyout", MessageBoxButton.OK, MessageBoxImage.Error);
+                Logger.Log(Procurement.MessagesRes.ExceptionInSetTabBuyoutClick + ex.ToString());
+                MessageBox.Show(Procurement.MessagesRes.ErrorSettingTabwideBuyoutErrorDetailsLoggedToDebugInfo, Procurement.MessagesRes.ErrorSettingTabwideBuyout, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

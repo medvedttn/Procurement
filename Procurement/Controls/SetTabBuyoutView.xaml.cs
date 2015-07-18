@@ -22,6 +22,13 @@ namespace Procurement.Controls
 
             this.DataContext = vm;
             this.tabName = tabName;
+
+            if (ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.chkTabBuyout.Content = "Цена вкладки";
+                this.btnSave.Content = "Сохранить";
+                this.btnCancel.Content = "Отмена";
+            }
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

@@ -9,6 +9,16 @@ namespace Procurement.View
         {
             InitializeComponent();
             this.DataContext = new StashViewModel(this);
+            if (ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                lblSearch.Content = "Поиск:";
+                lblFilter.Content = "Фильтр:";
+                lblCurrBreakdown.Content = "Итого по сферам";
+                tabCurrencyBreakdown.Header = "Итого сфер";
+                tabAdvSearch.Header = "Расширенный поиск";
+                tabGems.Header = "Камни";
+                chkNone.Content = "Нет";
+            }
         }
 
         public new Grid Content
@@ -24,7 +34,7 @@ namespace Procurement.View
                 return;
 
             var cb = sender as CheckBox;
-            if (cb.Content.ToString() == "None" && cb.IsChecked.Value)
+            if ((cb.Content.ToString() == "None" || cb.Content.ToString() == "Нет") && cb.IsChecked.Value)
             {
                 foreach (var item in VisualTreeHelper.GetVisualChildren<CheckBox>(cb.Parent))
                     item.IsChecked = false;

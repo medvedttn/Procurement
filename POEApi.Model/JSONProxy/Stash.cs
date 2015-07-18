@@ -88,6 +88,9 @@ namespace POEApi.Model.JSONProxy
         [DataMember(Name = "frameType")]
         public int frameType { get; set; }
 
+        [DataMember(Name = "artFilename")]
+        public string ArtFilename { get; set; }
+
         [DataMember(Name = "x")]
         public int X { get; set; }
 

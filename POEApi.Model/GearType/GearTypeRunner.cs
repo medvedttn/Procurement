@@ -12,6 +12,7 @@ namespace POEApi.Model
         public GearTypeRunner(GearType gearType)
         {
             this.Type = gearType;
+            
         }
     }
 
@@ -33,12 +34,12 @@ namespace POEApi.Model
         {
             // First, check the general types, to see if there is an easy match.
             foreach (var type in generalTypes)
-                if (item.TypeLine.Contains(type))
+                if (item.TypeLine.ToLower().Contains(type.ToLower()))
                     return true;
 
             // Second, check all known types.
             foreach (var type in compatibleTypes)
-                if (item.TypeLine.Contains(type))
+                if (item.TypeLine.ToLower().Contains(type.ToLower()))
                     return true;
 
             return false;
@@ -46,11 +47,11 @@ namespace POEApi.Model
 
         public override string GetBaseType(Gear item)
         {
-            if (incompatibleTypes != null && incompatibleTypes.Any(t => item.TypeLine.Contains(t)))
+            if (incompatibleTypes != null && incompatibleTypes.Any(t => item.TypeLine.ToLower().Contains(t.ToLower())))
                 return null;
 
             foreach (var type in compatibleTypes)
-                if (item.TypeLine.Contains(type))
+                if (item.TypeLine.ToLower().Contains(type.ToLower()))
                     return type;
 
             return null;
@@ -62,12 +63,12 @@ namespace POEApi.Model
         public RingRunner()
             : base(GearType.Ring, Settings.GearBaseTypes[GearType.Ring])
         {
-            incompatibleTypes = new List<string>() { "Ringmail" };
+            incompatibleTypes = new List<string>() { POEApi.Model.ServerTypeRes.GearTypeRingmail };
         }
 
         public override bool IsCompatibleType(Gear item)
         {
-            if (item.TypeLine.Contains("Ring") && !incompatibleTypes.Any(t => item.TypeLine.Contains(t)))
+            if (item.TypeLine.ToLower().Contains(POEApi.Model.ServerTypeRes.GearTypeRing.ToLower()) && !incompatibleTypes.Any(t => item.TypeLine.ToLower().Contains(t.ToLower())))
                 return true;
 
             return false;
@@ -79,7 +80,7 @@ namespace POEApi.Model
         public AmuletRunner()
             : base(GearType.Amulet, Settings.GearBaseTypes[GearType.Amulet])
         {
-            generalTypes.Add("Amulet");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeAmulet);
         }
     }
 
@@ -88,7 +89,23 @@ namespace POEApi.Model
         public HelmetRunner()
             : base(GearType.Helmet, Settings.GearBaseTypes[GearType.Helmet])
         {
-            generalTypes.AddRange(new List<string>() { "Helmet", "Circlet", "Cap", "Mask", "Chain Coif", "Casque", "Hood", "Ringmail Coif", "Chainmail Coif", "Ring Coif", "Crown", "Burgonet", "Bascinet", "Pelt" });
+            generalTypes.AddRange(new List<string>()
+            { 
+                POEApi.Model.ServerTypeRes.GearTypeHelmet, 
+                POEApi.Model.ServerTypeRes.GearTypeCirclet, 
+                POEApi.Model.ServerTypeRes.GearTypeCap, 
+                POEApi.Model.ServerTypeRes.GearTypeMask, 
+                POEApi.Model.ServerTypeRes.GearTypeChainCoif, 
+                POEApi.Model.ServerTypeRes.GearTypeCasque, 
+                POEApi.Model.ServerTypeRes.GearTypeHood, 
+                POEApi.Model.ServerTypeRes.GearTypeRingmailCoif, 
+                POEApi.Model.ServerTypeRes.GearTypeChainmailCoif, 
+                POEApi.Model.ServerTypeRes.GearTypeRingCoif, 
+                POEApi.Model.ServerTypeRes.GearTypeCrown, 
+                POEApi.Model.ServerTypeRes.GearTypeBurgonet, 
+                POEApi.Model.ServerTypeRes.GearTypeBascinet, 
+                POEApi.Model.ServerTypeRes.GearTypePelt
+            });
         }
     }
 
@@ -104,8 +121,8 @@ namespace POEApi.Model
         public BeltRunner()
             : base(GearType.Belt, Settings.GearBaseTypes[GearType.Belt])
         {
-            generalTypes.Add("Belt");
-            generalTypes.Add("Sash");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeBelt);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeSash);
         }
     }
 
@@ -114,7 +131,7 @@ namespace POEApi.Model
         public FlaskRunner()
             : base(GearType.Flask, Settings.GearBaseTypes[GearType.Flask])
         {
-            generalTypes.Add("Flask");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeFlask);
         }
     }
 
@@ -123,7 +140,7 @@ namespace POEApi.Model
         public MapRunner()
             : base(GearType.Map, Settings.GearBaseTypes[GearType.Map])
         {
-            generalTypes.Add("Map");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.MapText);
         }
     }
 
@@ -132,9 +149,9 @@ namespace POEApi.Model
         public GloveRunner()
             : base(GearType.Gloves, Settings.GearBaseTypes[GearType.Gloves])
         {
-            generalTypes.Add("Glove");
-            generalTypes.Add("Mitts");
-            generalTypes.Add("Gauntlets");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeGlove);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeMitts);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeGauntlets);
         }
     }
 
@@ -143,10 +160,10 @@ namespace POEApi.Model
         public BootRunner()
             : base(GearType.Boots, Settings.GearBaseTypes[GearType.Boots])
         {
-            generalTypes.Add("Greaves");
-            generalTypes.Add("Slippers");
-            generalTypes.Add("Boots");
-            generalTypes.Add("Shoes");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeGreaves);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeSlippers);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeBoots);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeShoes);
         }
     }
 
@@ -155,7 +172,17 @@ namespace POEApi.Model
         public AxeRunner()
             : base(GearType.Axe, Settings.GearBaseTypes[GearType.Axe])
         {
-            generalTypes.AddRange(new List<string>() { "Axe", "Chopper", "Splitter", "Labrys", "Tomahawk", "Hatchet", "Poleaxe", "Woodsplitter", "Cleaver" });
+            generalTypes.AddRange(new List<string>() {
+                POEApi.Model.ServerTypeRes.WeaponTypeAxe,
+                POEApi.Model.ServerTypeRes.WeaponTypeChopper, 
+                POEApi.Model.ServerTypeRes.WeaponTypeSplitter, 
+                POEApi.Model.ServerTypeRes.WeaponTypeLabrys, 
+                POEApi.Model.ServerTypeRes.WeaponTypeTomahawk, 
+                POEApi.Model.ServerTypeRes.WeaponTypeHatchet, 
+                POEApi.Model.ServerTypeRes.WeaponTypePoleaxe, 
+                POEApi.Model.ServerTypeRes.WeaponTypeWoodsplitter, 
+                POEApi.Model.ServerTypeRes.WeaponTypeCleaver 
+            });
         }
     }
 
@@ -164,7 +191,16 @@ namespace POEApi.Model
         public ClawRunner()
             : base(GearType.Claw, Settings.GearBaseTypes[GearType.Claw])
         {
-            generalTypes.AddRange(new List<string>() { "Fist", "Awl", "Paw", "Blinder", "Ripper", "Stabber", "Claw", "Gouger" });
+            generalTypes.AddRange(new List<string>() {
+                POEApi.Model.ServerTypeRes.WeaponTypeFist, 
+                POEApi.Model.ServerTypeRes.WeaponTypeAwl, 
+                POEApi.Model.ServerTypeRes.WeaponTypePaw, 
+                POEApi.Model.ServerTypeRes.WeaponTypeBlinder, 
+                POEApi.Model.ServerTypeRes.WeaponTypeRipper, 
+                POEApi.Model.ServerTypeRes.WeaponTypeStabber, 
+                POEApi.Model.ServerTypeRes.WeaponTypeClaw, 
+                POEApi.Model.ServerTypeRes.WeaponTypeGouger 
+            });
         }
     }
 
@@ -173,7 +209,7 @@ namespace POEApi.Model
         public BowRunner()
             : base(GearType.Bow, Settings.GearBaseTypes[GearType.Bow])
         {
-            generalTypes.Add("Bow");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeBow);
         }
     }
 
@@ -182,7 +218,17 @@ namespace POEApi.Model
         public DaggerRunner()
             : base(GearType.Dagger, Settings.GearBaseTypes[GearType.Dagger])
         {
-            generalTypes.AddRange(new List<string>() { "Dagger", "Shank", "Knife", "Stiletto", "Skean", "Poignard", "Ambusher", "Boot Blade", "Kris" });
+            generalTypes.AddRange(new List<string>() {
+                POEApi.Model.ServerTypeRes.WeaponTypeDagger, 
+                POEApi.Model.ServerTypeRes.WeaponTypeShank, 
+                POEApi.Model.ServerTypeRes.WeaponTypeKnife, 
+                POEApi.Model.ServerTypeRes.WeaponTypeStiletto, 
+                POEApi.Model.ServerTypeRes.WeaponTypeSkean, 
+                POEApi.Model.ServerTypeRes.WeaponTypePoignard, 
+                POEApi.Model.ServerTypeRes.WeaponTypeAmbusher, 
+                POEApi.Model.ServerTypeRes.WeaponTypeBootBlade, 
+                POEApi.Model.ServerTypeRes.WeaponTypeKris 
+            });
         }
     }
 
@@ -191,7 +237,20 @@ namespace POEApi.Model
         public MaceRunner()
             : base(GearType.Mace, Settings.GearBaseTypes[GearType.Mace])
         {
-            generalTypes.AddRange(new List<string>() { "Club", "Tenderizer", "Mace", "Hammer", "Maul", "Mallet", "Breaker", "Gavel", "Pernarch", "Steelhead", "Piledriver", "Bladed Mace" });
+            generalTypes.AddRange(new List<string>() {
+                POEApi.Model.ServerTypeRes.WeaponTypeClub, 
+                POEApi.Model.ServerTypeRes.WeaponTypeTenderizer, 
+                POEApi.Model.ServerTypeRes.WeaponTypeMace, 
+                POEApi.Model.ServerTypeRes.WeaponTypeHammer, 
+                POEApi.Model.ServerTypeRes.WeaponTypeMaul, 
+                POEApi.Model.ServerTypeRes.WeaponTypeMallet, 
+                POEApi.Model.ServerTypeRes.WeaponTypeBreaker, 
+                POEApi.Model.ServerTypeRes.WeaponTypeGavel, 
+                POEApi.Model.ServerTypeRes.WeaponTypePernarch, 
+                POEApi.Model.ServerTypeRes.WeaponTypeSteelhead, 
+                POEApi.Model.ServerTypeRes.WeaponTypePiledriver, 
+                POEApi.Model.ServerTypeRes.WeaponTypeBladedMace 
+            });
         }
     }
 
@@ -200,7 +259,7 @@ namespace POEApi.Model
         public QuiverRunner()
             : base(GearType.Quiver, Settings.GearBaseTypes[GearType.Quiver])
         {
-            generalTypes.Add("Quiver");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeQuiver);
         }
     }
 
@@ -209,9 +268,9 @@ namespace POEApi.Model
         public SceptreRunner()
             : base(GearType.Sceptre, Settings.GearBaseTypes[GearType.Sceptre])
         {
-            generalTypes.Add("Sceptre");
-            generalTypes.Add("Fetish");
-            generalTypes.Add("Sekhem");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeSceptre);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeFetish);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeSekhem);
         }
     }
 
@@ -220,10 +279,10 @@ namespace POEApi.Model
         public StaffRunner()
             : base(GearType.Staff, Settings.GearBaseTypes[GearType.Staff])
         {
-            generalTypes.Add("Staff");
-            generalTypes.Add("Gnarled Branch");
-            generalTypes.Add("Quarterstaff");
-            generalTypes.Add("Lathi");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeStaff);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeGnarledBranch);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeQuarterstaff);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeLathi);
         }
     }
 
@@ -232,8 +291,26 @@ namespace POEApi.Model
         public SwordRunner()
             : base(GearType.Sword, Settings.GearBaseTypes[GearType.Sword])
         {
-            generalTypes.AddRange(new List<string>() { "Sword", "sword", "Sabre", "Dusk Blade", "Cutlass", "Baselard", "Gladius", "Variscite Blade", "Vaal Blade", "Midnight Blade", "Corroded Blade",
-                   "Highland Blade", "Ezomyte Blade", "Rusted Spike", "Rapier", "Foil", "Pecoraro", "Estoc", "Twilight Blade" });
+            generalTypes.AddRange(new List<string>() {
+                POEApi.Model.ServerTypeRes.WeaponTypeSword, 
+                POEApi.Model.ServerTypeRes.WeaponTypeSabre, 
+                POEApi.Model.ServerTypeRes.WeaponTypeDuskBlade, 
+                POEApi.Model.ServerTypeRes.WeaponTypeCutlass, 
+                POEApi.Model.ServerTypeRes.WeaponTypeBaselard, 
+                POEApi.Model.ServerTypeRes.WeaponTypeGladius, 
+                POEApi.Model.ServerTypeRes.WeaponTypeVarisciteBlade, 
+                POEApi.Model.ServerTypeRes.WeaponTypeVaalBlade, 
+                POEApi.Model.ServerTypeRes.WeaponTypeMidnightBlade, 
+                POEApi.Model.ServerTypeRes.WeaponTypeCorrodedBlade,
+                POEApi.Model.ServerTypeRes.WeaponTypeHighlandBlade,
+                POEApi.Model.ServerTypeRes.WeaponTypeEzomyteBlade, 
+                POEApi.Model.ServerTypeRes.WeaponTypeRustedSpike, 
+                POEApi.Model.ServerTypeRes.WeaponTypeRapier, 
+                POEApi.Model.ServerTypeRes.WeaponTypeFoil, 
+                POEApi.Model.ServerTypeRes.WeaponTypePecoraro, 
+                POEApi.Model.ServerTypeRes.WeaponTypeEstoc, 
+                POEApi.Model.ServerTypeRes.WeaponTypeTwilightBlade 
+            });
         }
     }
 
@@ -242,9 +319,9 @@ namespace POEApi.Model
         public ShieldRunner()
             : base(GearType.Shield, Settings.GearBaseTypes[GearType.Shield])
         {
-            generalTypes.Add("Shield");
-            generalTypes.Add("Spiked Bundle");
-            generalTypes.Add("Buckler");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeShield);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeSpikedBundle);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeBuckler);
         }
     }
 
@@ -253,8 +330,25 @@ namespace POEApi.Model
         public WandRunner()
             : base(GearType.Wand, Settings.GearBaseTypes[GearType.Wand])
         {
-            generalTypes.Add("Wand");
-            generalTypes.Add("Horn");
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeWand);
+            generalTypes.Add(POEApi.Model.ServerTypeRes.WeaponTypeHorn);
+        }
+    }
+
+    public class DivinationCardRunner : GearTypeRunnerBase
+    {
+        public DivinationCardRunner()
+            : base(GearType.DivinationCard, Settings.GearBaseTypes[GearType.DivinationCard])
+        {
+        }
+    }
+
+    public class JewelRunner : GearTypeRunnerBase
+    {
+        public JewelRunner()
+            : base(GearType.Jewel, new List<string>())
+        {
+            generalTypes.Add(POEApi.Model.ServerTypeRes.GearTypeJewel);
         }
     }
 }

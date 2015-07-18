@@ -4,7 +4,12 @@
     {
         public EnergyShieldFilter()
             : base("Energy Shield")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.keyword = "энергетического щита";
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -13,7 +18,17 @@
 
         public override string Keyword
         {
-            get { return "Energy Shield"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Энергетический щит";
+                }
+                else
+                {
+                    return "Energy Shield";
+                }
+            }
         }
 
         public override string Help

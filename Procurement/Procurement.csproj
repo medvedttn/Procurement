@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -94,6 +94,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ApplicationState.cs" />
+    <Compile Include="Controls\ItemDisplayDivinationCard.xaml.cs">
+      <DependentUpon>ItemDisplayDivinationCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SetTabBuyoutView.xaml.cs">
       <DependentUpon>SetTabBuyoutView.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,16 @@
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessagesRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MessagesRes.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesRes.ru-RU.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Utility\AlphaHittestedImage.cs" />
@@ -380,24 +393,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <EmbeddedResource Include="MessagesRes.ru-RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesRes.ru-RU.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessagesRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
     <Resource Include="Resources\fontin-regular-webfont.ttf" />
     <Resource Include="Resources\fontin-smallcaps-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ItemDisplayDivinationCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\SetTabBuyoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -551,9 +569,6 @@
     <Resource Include="Images\stash-grid.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\inventory.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\buttons\btn_about.png" />
     <Resource Include="Images\buttons\btn_contacts.png" />
     <Resource Include="Images\buttons\btn_inventory.png" />
@@ -574,7 +589,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\mainscreen.png" />
-    <Resource Include="Images\Sir Marauder.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Sockets\blue-socketed.png" />
@@ -684,9 +698,6 @@
     <Resource Include="Images\Sockets\red-socketed-white.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Sir Marauder bw.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Sockets\white-socketed-white.png" />
   </ItemGroup>
   <ItemGroup>
@@ -695,7 +706,45 @@
   <ItemGroup>
     <Resource Include="Images\Sir medved about.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\medved-relax.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\buttons_ru\about-button-hover.png" />
+    <Resource Include="Images\buttons_ru\about-button.png" />
+    <Resource Include="Images\buttons_ru\btn_close.png" />
+    <Resource Include="Images\buttons_ru\btn_close_hover.png" />
+    <Resource Include="Images\buttons_ru\btn_inventory.png" />
+    <Resource Include="Images\buttons_ru\btn_login.png" />
+    <Resource Include="Images\buttons_ru\btn_login_hover.png" />
+    <Resource Include="Images\buttons_ru\btn_min.png" />
+    <Resource Include="Images\buttons_ru\btn_min_hover.png" />
+    <Resource Include="Images\buttons_ru\btn_offline.png" />
+    <Resource Include="Images\buttons_ru\btn_offline_hover.png" />
+    <Resource Include="Images\buttons_ru\btn_recipes.png" />
+    <Resource Include="Images\buttons_ru\btn_recipes_hover.png" />
+    <Resource Include="Images\buttons_ru\btn_selected_settings.png" />
+    <Resource Include="Images\buttons_ru\btn_selected_trading.png" />
+    <Resource Include="Images\buttons_ru\btn_select_inventory.png" />
+    <Resource Include="Images\buttons_ru\btn_select_stash.png" />
+    <Resource Include="Images\buttons_ru\btn_settings.png" />
+    <Resource Include="Images\buttons_ru\btn_stash.png" />
+    <Resource Include="Images\buttons_ru\btn_trading.png" />
+    <Resource Include="Images\buttons_ru\donate-hover.png" />
+    <Resource Include="Images\buttons_ru\donate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ItemHover\DivinationCard.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "Release"=="$(ConfigurationName)" (
+signtool sign /sha1 f194df8d074ad7b3f6be51762b65cab6eb8e5291 /v /t "http://timestamp.globalsign.com/scripts/timestamp.dll" "$(TargetPath)"
+)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

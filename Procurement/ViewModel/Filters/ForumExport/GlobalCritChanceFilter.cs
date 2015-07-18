@@ -9,7 +9,12 @@ namespace Procurement.ViewModel.Filters.ForumExport
     {
         public GlobalCritChanceFilter()
             : base("increased Global Critical Strike Chance")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.keyword = "повышение глобального шанса критического удара";
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -18,7 +23,17 @@ namespace Procurement.ViewModel.Filters.ForumExport
 
         public override string Keyword
         {
-            get { return "Global Crit Chance"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Глобальный шанс критического удара";
+                }
+                else
+                {
+                    return "Global Crit Chance";
+                }
+            }
         }
 
         public override string Help

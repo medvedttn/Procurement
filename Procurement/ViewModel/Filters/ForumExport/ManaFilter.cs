@@ -4,7 +4,13 @@
     {
         public ManaFilter()
             : base("to maximum Mana")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.keyword = "к максимуму маны";
+                //TODO: new mana filter for "повышение максимума маны"
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -13,7 +19,17 @@
 
         public override string Keyword
         {
-            get { return "Maximum Mana"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Максимум к мане";
+                }
+                else
+                {
+                    return "Maximum Mana";
+                }
+            }
         }
 
         public override string Help

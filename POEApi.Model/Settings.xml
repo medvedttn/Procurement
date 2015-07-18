@@ -20,7 +20,7 @@
     <Orb type="JewelersOrb" OrbAmount="10" ChaosAmount="1" />
     <Orb type="Alteration" OrbAmount="20" ChaosAmount="1" />
     <Orb type="Chromatic" OrbAmount="20" ChaosAmount="1" />
-    <Orb type="VaalOrb" OrbAmount="1" ChaosAmount="1" />    "
+    <Orb type="VaalOrb" OrbAmount="1" ChaosAmount="1" />
   </Ratios>
   <PopularGems>
     <Gem name="Cast when Damage Taken" />
@@ -42,10 +42,32 @@
     <Gem name="Elemental Hit" />
     <Gem name="Elemental Proliferation" />
     <Gem name="Elemental Weakness" />
-    <Gem name="Multistrike" />
     <Gem name="Temporal Chains" />
     <Gem name="Faster Casting" />
   </PopularGems>
+  <PopularGems_RU>
+    <Gem name="Произнесение заклинаний при получении урона" />
+    <Gem name="Произнесение заклинаний при критическом ударе" />
+    <Gem name="Магия крови" />
+    <Gem name="Количество предметов" />
+    <Gem name="Здоровье за удар" />
+    <Gem name="Вытягивание жизни" />
+    <Gem name="Град ударов" />
+    <Gem name="Меньший расход маны" />
+    <Gem name="Колдующий тотем" />
+    <Gem name="Цепь" />
+    <Gem name="Ускорение атак" />
+    <Gem name="Много дополнительных снарядов" />
+    <Gem name="Дополнительные снаряды" />
+    <Gem name="Дополнительный урон хаосом" />
+    <Gem name="Редкость предметов" />
+    <Gem name="Средоточение" />
+    <Gem name="Удар стихий" />
+    <Gem name="Разгул стихий" />
+    <Gem name="Уязвимость к стихиям" />
+    <Gem name="Путы времени" />
+    <Gem name="Ускоренное произнесение заклинаний" />
+  </PopularGems_RU>
   <UserSettings>
     <Setting name="AccountLogin" value="" />
     <Setting name="AccountPassword" value="" />
@@ -63,6 +85,7 @@
     <Setting name="CheckForUpdates" value="True" />
     <Setting name="PoeTradeRefreshEnabled" value="false" />
     <Setting name="PoeTradeRefreshUrl" value="" />
+    <Setting name="ServerType" value="" />
   </UserSettings>
   <ProxySettings>
     <Setting name="Enabled" value="False" />
@@ -73,15 +96,15 @@
   <ShopSettings>
     <Shop League="Standard" ThreadId="" ThreadTitle="" />
     <Shop League="Hardcore" ThreadId="" ThreadTitle="" />
-    <Shop League="Bloodlines" ThreadId="" ThreadTitle="" />
-    <Shop League="Torment" ThreadId="" ThreadTitle="" />
+    <Shop League="Warbands" ThreadId="" ThreadTitle="" />
+    <Shop League="Tempest" ThreadId="" ThreadTitle="" />
   </ShopSettings>
   <Lists>
     <List name="MyLeagues">
       <Item value="Standard" />
       <Item value="Hardcore" />
-      <Item value="Torment" />
-      <Item value="Bloodlines" />
+      <Item value="Warbands" />
+      <Item value="Tempest" />
     </List>
     <List name="MyTabs">
       <!--If you only want Procurement to download specific tabs list them here, eg :-->

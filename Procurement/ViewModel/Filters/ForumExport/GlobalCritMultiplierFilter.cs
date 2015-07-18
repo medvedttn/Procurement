@@ -9,7 +9,12 @@ namespace Procurement.ViewModel.Filters.ForumExport
     {
         public GlobalCritMultiplierFilter()
             : base("increased Global Critical Strike Multiplier")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.keyword = "увеличение глобального множителя критического удара";
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -18,7 +23,17 @@ namespace Procurement.ViewModel.Filters.ForumExport
 
         public override string Keyword
         {
-            get { return "Global Crit Multiplier"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Глобальный множитель критического удара";
+                }
+                else
+                {
+                    return "Global Crit Multiplier";
+                }
+            }
         }
 
         public override string Help

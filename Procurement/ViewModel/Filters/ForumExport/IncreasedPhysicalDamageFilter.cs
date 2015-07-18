@@ -10,7 +10,12 @@ namespace Procurement.ViewModel.Filters
     {
         public IncreasedPhysicalDamageFilter()
             : base("increased Physical Damage")
-        { }
+        {
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.keyword = "увеличение физического урона";
+            }
+        }
 
         public override bool CanFormCategory
         {
@@ -19,7 +24,17 @@ namespace Procurement.ViewModel.Filters
 
         public override string Keyword
         {
-            get { return "Increased Physical Damage"; }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return "Увеличенный физический урон";
+                }
+                else
+                {
+                    return "Increased Physical Damage";
+                }
+            }
         }
 
         public override string Help

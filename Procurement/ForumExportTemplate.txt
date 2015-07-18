@@ -22,6 +22,15 @@ Please message me here or ingame if something catches your eye. My IGN is {IGN}.
 [spoiler="          70-78          "]
 {70Maps}{71Maps}{72Maps}{73Maps}{74Maps}{75Maps}{76Maps}{77Maps}{78Maps}
 [/spoiler]
+[spoiler="          79-82          "]
+{79Maps}{80Maps}{81Maps}{82Maps}
+[/spoiler]
+[/spoiler]
+[spoiler="          Jewels         "]
+{NormalJewel}{MagicJewel}{RareJewel}{UniqueJewel}
+[/spoiler]
+[spoiler="          Divination Cards      "]
+{DivinationCard}
 [/spoiler]
 [spoiler="          Gems          "]
 [spoiler="          Quality Gems          "]
@@ -55,6 +64,9 @@ Please message me here or ingame if something catches your eye. My IGN is {IGN}.
 [/spoiler]
 [spoiler="          Leveled Gems          "]
 {Level2Gems}{Level3Gems}{Level4Gems}{Level5Gems}{Level6Gems}{Level7Gems}{Level8Gems}{Level9Gems}{Level10Gems}{Level11Gems}{Level12Gems}{Level13Gems}{Level14Gems}{Level15Gems}{Level16Gems}{Level17Gems}{Level18Gems}{Level19Gems}{Level20Gems}
+[/spoiler]
+[spoiler="          Level 1 Gems          "]
+{Level1Gems}
 [/spoiler]
 [spoiler="          Vaal Gems          "]
 {VaalGems}
@@ -134,5 +146,5 @@ Please message me here or ingame if something catches your eye. My IGN is {IGN}.
 
 Thanks for visiting!
 
-[url=https://code.google.com/p/procurement/][img]http://i.imgur.com/ZHBMImo.png[/img][/url]
+[url=https://github.com/medvedttn/Procurement][img]http://i.imgur.com/f1bzioI.png[/img][/url]
 

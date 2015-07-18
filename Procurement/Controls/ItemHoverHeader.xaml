@@ -34,8 +34,8 @@
                             <Image HorizontalAlignment="Left" Source="/Images/ItemHover/ItemHeaderUniqueLeft.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
                             <Image Source="/Images/ItemHover/ItemHeaderUniqueMiddle.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" Canvas.ZIndex="0" />
                             <Image HorizontalAlignment="Right" Source="/Images/ItemHover/ItemHeaderUniqueRight.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
-                            <TextBlock Margin="0,5,0,0"  Grid.Column="1" Grid.Row="0" FontFamily="../Resources/#Fontin SmallCaps" Text="{Binding Name}" FontSize="18" Foreground="Orange" Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center"/>
-                            <TextBlock                   Grid.Column="1" Grid.Row="1" FontFamily="../Resources/#Fontin SmallCaps" Text="{Binding TypeLine}" FontSize="18" Foreground="Orange" HorizontalAlignment="Center"/>
+                            <TextBlock Margin="0,5,0,0"  Grid.Column="1" Grid.Row="0" FontFamily="../Resources/#Fontin SmallCaps" Text="{Binding Name}" FontSize="18" Foreground="Orange" Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center" MaxWidth="500"/>
+                            <TextBlock                   Grid.Column="1" Grid.Row="1" FontFamily="../Resources/#Fontin SmallCaps" Text="{Binding TypeLine}" FontSize="18" Foreground="Orange" HorizontalAlignment="Center" MaxWidth="500"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -54,8 +54,8 @@
                             <Image HorizontalAlignment="Left" Source="/Images/ItemHover/ItemHeaderRareLeft.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
                             <Image Source="/Images/ItemHover/ItemHeaderRareMiddle.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" Canvas.ZIndex="0" />
                             <Image HorizontalAlignment="Right" Source="/Images/ItemHover/ItemHeaderRareRight.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
-                            <TextBlock  Margin="0,5,0,0" FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="#F1FF77"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center"/>
-                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="#F1FF77"   HorizontalAlignment="Center"/>
+                            <TextBlock Margin="0,5,0,0" FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="#F1FF77"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center" MaxWidth="400" />
+                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="#F1FF77"   HorizontalAlignment="Center" MaxWidth="400"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -74,8 +74,8 @@
                             <Image HorizontalAlignment="Left" Source="/Images/ItemHover/ItemHeaderMagicLeft.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
                             <Image Source="/Images/ItemHover/ItemHeaderMagicMiddle.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" Canvas.ZIndex="0" />
                             <Image HorizontalAlignment="Right" Source="/Images/ItemHover/ItemHeaderMagicRight.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
-                            <TextBlock Margin="0,5,0,0" FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="#8888F1"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center"/>
-                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="#8888F1"   HorizontalAlignment="Center"/>
+                            <TextBlock Margin="0,5,0,0" FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="#8888F1"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center" MaxWidth="400" />
+                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="#8888F1"   HorizontalAlignment="Center"  MaxWidth="400"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -94,8 +94,8 @@
                             <Image HorizontalAlignment="Left" Source="/Images/ItemHover/ItemHeaderWhiteLeft.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
                             <Image Source="/Images/ItemHover/ItemHeaderWhiteMiddle.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" Canvas.ZIndex="0" />
                             <Image HorizontalAlignment="Right" Source="/Images/ItemHover/ItemHeaderWhiteRight.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
-                            <TextBlock Margin="0,5,0,0"  FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="White"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center"/>
-                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="White"   HorizontalAlignment="Center"/>
+                            <TextBlock Margin="0,5,0,0"  FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="White"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center" MaxWidth="400" />
+                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="White"   HorizontalAlignment="Center" MaxWidth="400"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -114,7 +114,7 @@
                             <Image HorizontalAlignment="Left" Source="/Images/ItemHover/ItemHeaderCurrencyLeft.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
                             <Image Source="/Images/ItemHover/ItemHeaderCurrencyMiddle.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" Canvas.ZIndex="0" />
                             <Image HorizontalAlignment="Right" Source="/Images/ItemHover/ItemHeaderCurrencyRight.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
-                            <TextBlock Margin="0,5,0,0"  FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="#AA9E82" Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center"/>
+                            <TextBlock Margin="0,5,0,0"  FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="18" Foreground="#AA9E82" Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center" MaxWidth="400" />
                             <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Column="1" Grid.Row="1" Text="{Binding TypeLine}" FontSize="18" Foreground="White"   HorizontalAlignment="Center"/>
                         </Grid>
                     </Border>
@@ -146,8 +146,8 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <TextBlock  Margin="0,5,0,0" FontFamily="../Resources/#Fontin SmallCaps" Grid.Row="0" Text="{Binding Name}" FontSize="20" Foreground="{Binding Item, Converter={StaticResource vc}}"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center"/>
-                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Row="1" Text="{Binding TypeLine}" FontSize="20" Foreground="White"   HorizontalAlignment="Center"/>
+                            <TextBlock  Margin="0,5,0,0" FontFamily="../Resources/#Fontin SmallCaps" Grid.Row="0" Text="{Binding Name}" FontSize="20" Foreground="{Binding Item, Converter={StaticResource vc}}"   Visibility="{Binding HasName, Converter={StaticResource bc}, ConverterParameter=CollapseWhenFalse}" HorizontalAlignment="Center" MaxWidth="500"/>
+                            <TextBlock FontFamily="../Resources/#Fontin SmallCaps" Grid.Row="1" Text="{Binding TypeLine}" FontSize="20" Foreground="White"   HorizontalAlignment="Center" MaxWidth="500" />
                         </Grid>
                     </Border>
                 </DataTemplate>

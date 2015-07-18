@@ -1,9 +1,9 @@
-Modified version.
-![Procurement](http://i.imgur.com/ssqviwb.png)
-
-<a href="https://sites.google.com/site/poeprocurement/"><img src="http://i.imgur.com/n7je9iK.png"></img></a>
+Medved Edition version.
+![Procurement](http://i.imgur.com/N694amk.png)
 
 Path Of Exile Character &amp; Stash Management Tool
+
+Bears friendly :-)
 
 Procurement is a Windows application for the online game Path Of Exile, that logs in to the forum and downloads your characters/stash. From there you can:
 
@@ -17,4 +17,7 @@ Procurement is a Windows application for the online game Path Of Exile, that log
 * Everything is cached and can be viewed offline after you've logged in once
 * Single tab refreshing (if logged in) 
 
-
+* Manual item selection by one to sell from any tab
+* Copy item data as text (press Ctrl+C on item)
+* Weapon DPS calculator in item header (hold SHIFT and move mouse over items)
+* Support Garena+ RU (CIS version)

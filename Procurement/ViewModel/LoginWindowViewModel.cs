@@ -27,7 +27,7 @@ namespace Procurement.ViewModel
         public delegate void LoginCompleted();
         private bool formChanged = false;
         private bool useSession;
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private CharacterTabInjector characterInjector;
@@ -52,16 +52,15 @@ namespace Procurement.ViewModel
             }
         }
 
-        private string accname;
-        public string AccName
+        private static string serverType;
+        public static string ServerType
         {
-            get { return accname; }
+            get { return serverType; }
             set
             {
-                if (value != accname)
+                if (value != serverType)
                 {
-                    accname = value;
-                    OnPropertyChanged("AccName");
+                    serverType = value;
                 }
             }
         }
@@ -82,8 +81,11 @@ namespace Procurement.ViewModel
             if (this.view == null)
                 return;
 
-            this.view.lblEmail.Content = useSession ? "Alias" : "Email";
-            this.view.lblPassword.Content = useSession ? "Session ID" : "Password";
+            if (((ContentControl)this.view.cmbRealmType.SelectedValue).Content.ToString() == "International")
+            {
+                this.view.lblEmail.Content = useSession ? "Alias" : "Email";
+                this.view.lblPassword.Content = useSession ? "Session ID" : "Password";
+            }
         }
 
         public LoginWindowViewModel(UserControl view)
@@ -93,7 +95,7 @@ namespace Procurement.ViewModel
             UseSession = Settings.UserSettings.ContainsKey("UseSessionID") ? bool.Parse(Settings.UserSettings["UseSessionID"]) : false;
 
             Email = Settings.UserSettings["AccountLogin"];
-            AccName = Settings.UserSettings["AccountName"];
+            ServerType = ((ContentControl)this.view.cmbRealmType.SelectedValue).Content.ToString();
             this.formChanged = string.IsNullOrEmpty(Settings.UserSettings["AccountPassword"]);
 
             if (!this.formChanged)
@@ -110,7 +112,7 @@ namespace Procurement.ViewModel
             ApplicationState.InitializeFont(Properties.Resources.fontin_regular_webfont);
             ApplicationState.InitializeFont(Properties.Resources.fontin_smallcaps_webfont);
 
-            statusController.DisplayMessage(ApplicationState.Version + " Initialized.\r");
+            statusController.DisplayMessage(ApplicationState.Version + " Medved Edition Initialized.\r");
 
             VersionChecker.CheckForUpdates();
         }
@@ -120,20 +122,20 @@ namespace Procurement.ViewModel
             this.formChanged = true;
         }
 
-        public void Login(bool offline)
+        public void Login(bool offline, string server_type)
         {
             toggleControls();
 
-            if (string.IsNullOrEmpty(Email))
+            if ((string.IsNullOrEmpty(Email) || Email.ToLower() == "noemail") && server_type == "International")
             {
-                MessageBox.Show(string.Format("{0} is required!", useSession ? "Alias" : "Email"), "Error logging in", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show(string.Format("{0} is required!", useSession ? "Alias" : "Email"), Procurement.MessagesRes.ErrorLoggingIn, MessageBoxButton.OK, MessageBoxImage.Stop);
                 toggleControls();
                 return;
             }
 
-            if (string.IsNullOrEmpty(AccName))
+            if (this.view.txtPassword.SecurePassword.Length<1 && !offline)
             {
-                MessageBox.Show("Account name is required!", "Error logging in", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show(string.Format(Procurement.MessagesRes.IsRequiredPassword, ServerType=="International" ? "Password" : "Session ID"), Procurement.MessagesRes.ErrorLoggingIn, MessageBoxButton.OK, MessageBoxImage.Stop);
                 toggleControls();
                 return;
             }
@@ -148,7 +150,7 @@ namespace Procurement.ViewModel
             Task.Factory.StartNew(() =>
             {
                 SecureString password = formChanged ? this.view.txtPassword.SecurePassword : Settings.UserSettings["AccountPassword"].Decrypt();
-                ApplicationState.Model.Authenticate(Email, password, offline, useSession);
+                ApplicationState.Model.Authenticate(Email, password, offline, useSession, server_type);
 
                 if (formChanged)
                     saveSettings(password);
@@ -156,11 +158,11 @@ namespace Procurement.ViewModel
                 if (!offline)
                 {
                     ApplicationState.Model.ForceRefresh();
-                    statusController.DisplayMessage("Loading characters...");
+                    statusController.DisplayMessage(Procurement.MessagesRes.LoadingCharacters);
                 }
                 else
                 {
-                    statusController.DisplayMessage("Loading Procurement in offline mode...");
+                    statusController.DisplayMessage(Procurement.MessagesRes.LoadingProcurementInOfflineMode);
                 }
 
                 List<Character> chars;
@@ -172,7 +174,7 @@ namespace Procurement.ViewModel
                 {
                     Logger.Log(wex);
                     statusController.NotOK();
-                    throw new Exception("Failed to load characters", wex.InnerException);
+                    throw new Exception(Procurement.MessagesRes.FailedToLoadCharacters, wex.InnerException);
                 }
                 statusController.Ok();
 
@@ -186,7 +188,7 @@ namespace Procurement.ViewModel
 
                 if (!offline)
                 {
-                    statusController.DisplayMessage("\nDone!");
+                    statusController.DisplayMessage(Procurement.MessagesRes.DoneLoading);
                     PoeTradeOnlineHelper.Instance.Start();
                 }
 
@@ -222,7 +224,7 @@ namespace Procurement.ViewModel
             }
 
             if (downloadOnlyMyLeagues && ApplicationState.Characters.Count == 0)
-                throw new Exception("No characters found in the leagues specified. Check spelling or try setting DownloadOnlyMyLeagues to false in settings.");
+                throw new Exception(Procurement.MessagesRes.NoCharactersFoundInTheLeaguesSpecified);
 
 
             characterInjector.Inject();
@@ -251,7 +253,6 @@ namespace Procurement.ViewModel
 
             Settings.UserSettings["AccountLogin"] = Email;
             Settings.UserSettings["AccountPassword"] = password.Encrypt();
-            Settings.UserSettings["AccountName"] = AccName;
             Settings.UserSettings["UseSessionID"] = useSession.ToString();
             Settings.Save();
         }
@@ -262,7 +263,7 @@ namespace Procurement.ViewModel
             view.OfflineButton.IsEnabled = !view.OfflineButton.IsEnabled;
             view.txtLogin.IsEnabled = !view.txtLogin.IsEnabled;
             view.txtPassword.IsEnabled = !view.txtPassword.IsEnabled;
-            view.txtAccName.IsEnabled = !view.txtAccName.IsEnabled;
+            view.cmbRealmType.IsEnabled = !view.cmbRealmType.IsEnabled;
         }
 
         private IEnumerable<Item> LoadStashItems(Character character)
@@ -271,7 +272,7 @@ namespace Procurement.ViewModel
                 return Enumerable.Empty<Item>();
 
             ApplicationState.CurrentLeague = character.League;
-            ApplicationState.Stash[character.League] = ApplicationState.Model.GetStash(character.League, AccName);
+            ApplicationState.Stash[character.League] = ApplicationState.Model.GetStash(character.League);
             ApplicationState.Leagues.Add(character.League);
 
             return ApplicationState.Stash[character.League].Get<Item>();
@@ -282,12 +283,12 @@ namespace Procurement.ViewModel
             bool success;
 
             if (!offline)
-                statusController.DisplayMessage((string.Format("Loading {0}'s inventory...", character.Name)));
+                statusController.DisplayMessage((string.Format(Procurement.MessagesRes.Loading0SInventory, character.Name)));
 
             List<Item> inventory;
             try
             {
-                inventory = ApplicationState.Model.GetInventory(character.Name, false, AccName);
+                inventory = ApplicationState.Model.GetInventory(character.Name, false);
                 success = true;
             }
             catch (WebException)
@@ -315,23 +316,24 @@ namespace Procurement.ViewModel
 
         void model_StashLoading(POEModel sender, StashLoadedEventArgs e)
         {
-            update("Loading " + ApplicationState.CurrentLeague + " Stash Tab " + (e.StashID + 1) + "...", e);
+            update(Procurement.MessagesRes.LoadingStashTab1 + ApplicationState.CurrentLeague + Procurement.MessagesRes.LoadingStashTab2 + (e.StashID + 1) + "...", e);
         }
 
         void model_ImageLoading(POEModel sender, ImageLoadedEventArgs e)
         {
-            update("Loading Image For " + e.URL, e);
+            update(Procurement.MessagesRes.LoadingImageFor + e.URL, e);
         }
 
         void model_Authenticating(POEModel sender, AuthenticateEventArgs e)
         {
-            update("Authenticating " + e.Email, e);
+            update(Procurement.MessagesRes.Authenticating + e.Email, e);
+            if (e.State == POEEventState.AfterEvent) update(Procurement.MessagesRes.LoggedAsAuth + e.AccName, new POEEventArgs(POEEventState.BeforeEvent));
         }
 
         void model_Throttled(object sender, ThottledEventArgs e)
         {
             if (e.WaitTime.TotalSeconds > 4)
-                update(string.Format("GGG Server request limit hit, throttling activated. Please wait {0} seconds", e.WaitTime.Seconds), new POEEventArgs(POEEventState.BeforeEvent));
+                update(string.Format(Procurement.MessagesRes.GGGServerRequestLimitHitThrottlingActivated, e.WaitTime.Seconds), new POEEventArgs(POEEventState.BeforeEvent));
         }
 
         private void update(string message, POEEventArgs e)
