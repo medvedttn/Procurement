@@ -2,6 +2,7 @@
 <Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Data.xsd">
   <GearBaseTypes>
     <GearBaseType name="Ring">
+      <Item name="Золотой обруч"/>
       <Item name="Железное кольцо"/>
       <Item name="Кольцо с кораллом"/>
       <Item name="Кольцо с ракушкой"/>
@@ -15,6 +16,7 @@
       <Item name="Кольцо с аметистом"/>
       <Item name="Кольцо с двумя камнями"/>
       <Item name="Кольцо без камня"/>
+      <Item name="Струйное кольцо"/>
     </GearBaseType>
     <GearBaseType name="Amulet">
       <Item name="Амулет из ракушек"/>
@@ -27,6 +29,7 @@
       <Item name="Амулет с агатом"/>
       <Item name="Амулет с бирюзой"/>
       <Item name="Амулет с цитрином"/>
+      <Item name="Струйный амулет"/>
     </GearBaseType>
     <GearBaseType name="Helmet">
       <Item name="Железная Шапка"/>
@@ -97,6 +100,7 @@
       <Item name="Шутовская Маска"/>
       <Item name="Маска ваал"/>
       <Item name="Маска богоубийцы"/>
+      <Item name="Золотой венок"/>
     </GearBaseType>
     <GearBaseType name="Chest">
       <Item name="Панцирь"/>
@@ -207,6 +211,7 @@
       <Item name="Кровавый камзол"/>
       <Item name="Облачение мучителя"/>
       <Item name="Кровожадный Доспех"/>
+      <Item name="Доспех каома"/>
     </GearBaseType>
     <GearBaseType name="Belt">
       <Item name="Кушак"/>
@@ -215,6 +220,7 @@
       <Item name="Широкий ремень"/>
       <Item name="Клепаный ремень"/>
       <Item name="Матерчатый пояс"/>
+      <Item name="Шитый золотом пояс"/>
     </GearBaseType>
     <GearBaseType name="Flask">
       <Item name="Малый Флакон Жизни"/>
@@ -321,19 +327,18 @@
       <Item name="Карта дворца"/>
       <Item name="Карта храма ваал"/>
 
-      <!--TODO:translate when text will be available-->
-      <Item name="Pit Map"/>
-      <Item name="Quarry Map"/>
-      <Item name="Arena Map"/>
-      <Item name="Arid Lake Map"/>
-      <Item name="Volcano Map"/>
-      <Item name="Village Ruin Map"/>
-      <Item name="Excavation Map"/>
-      <Item name="Wasteland Map"/>
-      <Item name="Waterways Map"/>
-      <Item name="Abyss Map"/>
-      <Item name="Colosseum Map"/>
-      <Item name="Core Map"/>
+      <Item name="Карта ямы"/>
+      <Item name="Карта каменоломни"/>
+      <Item name="Карта арены"/>
+      <Item name="Карта высохшего озера"/>
+      <Item name="Карта вулкана"/>
+      <Item name="Карта разорённой деревни"/>
+      <Item name="Карта раскопок"/>
+      <Item name="Карта пустоши"/>
+      <Item name="Карта водных протоков"/>
+      <Item name="Карта бездны"/>
+      <Item name="Карта колизея"/>
+      <Item name="Карта сердца"/>
     </GearBaseType>
     <GearBaseType name="Gloves">
       <Item name="Железные рукавицы"/>
@@ -392,6 +397,7 @@
       <Item name="Перчатки крови"/>
       <Item name="Перчатки убийцы"/>
       <Item name="Перчатки смерти"/>
+      <Item name="Золотые перчатки"/>
     </GearBaseType>
     <GearBaseType name="Boots">
       <Item name="Железные Поножи"/>
@@ -451,6 +457,9 @@
       <Item name="Сапоги крови"/>
       <Item name="Калиги убийцы"/>
       <Item name="Сапоги смерти"/>
+      <Item name="Золотые калиги"/>
+      <Item name="Тапочки проворства"/>
+      <Item name="Поножи каома"/>
     </GearBaseType>
     <GearBaseType name="Axe">
       <Item name="Ржавый топорик"/>
@@ -495,6 +504,8 @@
       <Item name="Топор ваал"/>
       <Item name="Топор деспота"/>
       <Item name="Топор пустоты"/>
+
+      <Item name="Удочка"/>
 
       <Item name="Ancient Axe"/>
       <Item name="Dagger-Axe"/>
@@ -544,12 +555,14 @@
       <Item name="Чащобный Лук"/>
       <Item name="Осадный Лук"/>
       <Item name="Лук охотника"/>
+      <Item name="Лук убийцы"/>
       <Item name="Лук маракета"/>
       <Item name="Лук из рога"/>
       <Item name="Императорский Лук"/>
       <Item name="Лук предвестника"/>
+      <Item name="Тестовый лук"/>
 
-      <Item name="Reflex Bow"/>
+      <Item name="Лук прыти"/>
     </GearBaseType>
     <GearBaseType name="Dagger">
       <Item name="Осколок стекла"/>
@@ -576,7 +589,7 @@
       <Item name="Кинжал демона"/>
 
       <Item name="Ancient Blade"/>
-      <Item name="Curved Blade"/>
+      <Item name="Кривой клинок"/>
       <Item name="Parrying Dagger"/>
     </GearBaseType>
     <GearBaseType name="Mace">
@@ -622,6 +635,7 @@
       <Item name="Мясодер"/>
       <Item name="Императорский Молот"/>
       <Item name="Чудовищный Молот"/>
+      <Item name="Венечный молот"/>
 
       <Item name="Snake Mace"/>
       <Item name="Spiked Maul"/>
@@ -666,7 +680,7 @@
       <Item name="Скипетр ваал"/>
       <Item name="Скипетр пустоты"/>
 
-      <Item name="Horned Sceptre"/>
+      <Item name="Рогатый скипетр"/>
     </GearBaseType>
     <GearBaseType name="Staff">
       <Item name="Сучковатая ветка"/>
@@ -758,7 +772,7 @@
       <Item name="Меч льва"/>
       <Item name="Меч подземного царства"/>
 
-      <Item name="Hook Sword"/>
+      <Item name="Меч-крюк"/>
       <Item name="Small Sword"/>
     </GearBaseType>
     <GearBaseType name="Shield">
@@ -855,6 +869,7 @@
       <Item name="Колючий Щит эзомита"/>
       <Item name="Зеркальный колючий Щит"/>
       <Item name="Императорский колючий Щит"/>
+      <Item name="Золотое пламя"/>
     </GearBaseType>
     <GearBaseType name="Wand">
       <Item name="Жезл из плавника"/>
@@ -876,58 +891,70 @@
 
       <Item name="Оскаленый жезл"/>
     </GearBaseType>
-    <!--TODO:translate-->
     <GearBaseType name="DivinationCard">
-      <Item name="Abandoned Wealth"/>
-      <Item name="The Avenger"/>
-      <Item name="The Battle Born"/>
-      <Item name="Birth of the Three"/>
-      <Item name="The Brittle Emperor"/>
-      <Item name="The Carrion Crow"/>
-      <Item name="The Cataclysm"/>
-      <Item name="The Celestial Justicar"/>
-      <Item name="The Chains that Bind"/>
-      <Item name="Chaotic Disposition"/>
-      <Item name="Coveted Possession"/>
-      <Item name="The Dark Mage"/>
-      <Item name="The Doctor"/>
-      <Item name="The Drunken Aristocrat"/>
-      <Item name="Emperor's Luck"/>
-      <Item name="The Explorer"/>
-      <Item name="The Feast"/>
-      <Item name="The Fiend"/>
-      <Item name="The Gambler"/>
-      <Item name="The Gemcutter"/>
-      <Item name="Gemcutter's Promise"/>
-      <Item name="The Gladiator"/>
-      <Item name="The Hermit"/>
-      <Item name="The Hoarder"/>
-      <Item name="Hope"/>
-      <Item name="The Hunger"/>
-      <Item name="Humility"/>
-      <Item name="The Incantation"/>
-      <Item name="The Inventor"/>
-      <Item name="Jack in the Box"/>
-      <Item name="The King's Heart"/>
-      <Item name="Lantador's Lost Love"/>
-      <Item name="The Lover"/>
-      <Item name="Lucky Connections"/>
-      <Item name="The Metalsmith's Gift"/>
-      <Item name="The Pact"/>
-      <Item name="The Poet"/>
-      <Item name="Rain of Chaos"/>
-      <Item name="The Road to Power"/>
-      <Item name="The Scarred Meadow"/>
-      <Item name="The Scholar"/>
-      <Item name="The Summoner"/>
-      <Item name="The Sun"/>
-      <Item name="Three Faces in the Dark"/>
-      <Item name="Time-Lost Relic"/>
-      <Item name="The Union"/>
-      <Item name="Vinia's Token"/>
-      <Item name="The Warden"/>
-      <Item name="The Watcher"/>
-      <Item name="The Wind"/>
+      <Item name="Забытое богатство"/>
+      <Item name="Художник"/>
+      <Item name="Мститель"/>
+      <Item name="Воитель"/>
+      <Item name="Предательство"/>
+      <Item name="Рождение трёх"/>
+      <Item name="Хрупкий император"/>
+      <Item name="Чёрный ворон"/>
+      <Item name="Катаклизм"/>
+      <Item name="Небесный судья"/>
+      <Item name="Оковы"/>
+      <Item name="Баламут"/>
+      <Item name="Упоение"/>
+      <Item name="Безумие Дэрии"/>
+      <Item name="Тёмный маг"/>
+      <Item name="Доктор"/>
+      <Item name="Пьяный патриций"/>
+      <Item name="Удача императора"/>
+      <Item name="Вездесущая тьма"/>
+      <Item name="Исследователь"/>
+      <Item name="Пир"/>
+      <Item name="Враг"/>
+      <Item name="Сила природы"/>
+      <Item name="Игрок"/>
+      <Item name="Камнерезчик"/>
+      <Item name="Клятва камнерезчика"/>
+      <Item name="Гладиатор"/>
+      <Item name="Отшельник"/>
+      <Item name="Скопидом"/>
+      <Item name="Надежда"/>
+      <Item name="Голод"/>
+      <Item name="Смирение"/>
+      <Item name="Песнопение"/>
+      <Item name="Изобретатель"/>
+      <Item name="Клинок Венценосца"/>
+      <Item name="Сюрприз"/>
+      <Item name="Сердце вождя"/>
+      <Item name="Утраченная любовь Лантадора"/>
+      <Item name="Последний воин"/>
+      <Item name="Любовник"/>
+      <Item name="Удачная сделка"/>
+      <Item name="Дар кузнеца"/>
+      <Item name="Единство"/>
+      <Item name="Вожак стаи"/>
+      <Item name="Договор"/>
+      <Item name="Поэт"/>
+      <Item name="Царица"/>
+      <Item name="Пришествие хаоса"/>
+      <Item name="Путь к власти"/>
+      <Item name="Выгоревший луг"/>
+      <Item name="Учёный"/>
+      <Item name="Сирена"/>
+      <Item name="Баловень"/>
+      <Item name="Призыватель"/>
+      <Item name="Солнце"/>
+      <Item name="Три лика в темноте"/>
+      <Item name="Утерянная реликвия"/>
+      <Item name="Союз"/>
+      <Item name="Знак Виники"/>
+      <Item name="Смотритель"/>
+      <Item name="Наблюдатель"/>
+      <Item name="Ветер"/>
+      <Item name="Гнев"/>
     </GearBaseType>
   </GearBaseTypes>
 </Data>
