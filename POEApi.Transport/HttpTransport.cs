@@ -138,10 +138,10 @@ namespace POEApi.Transport
 
         private string getAccountNameFromHTMLtext(string http_resp)
         {
-            //extract account name from HTML text
-            //<span class="profile-link" ><a href="/account/view-profile/accname">accname</a></span>
-            string regexp_pattern = @"\<a href=""/account/view-profile/.*?\>(?<accname>.+?)\<\/a\>";
-
+            //extract account name from HTML text(2 type)
+            //<a href="/account/view-profile/accname">accname</a></span>
+            //<a href="/account/view-profile/accname"><img class=""achievement"" title=""Completed 1 Challenge"" alt=""Completed 1 Challenge"" src=""/image/icons/achievements/1.png?v=4"">accname</a></span>
+            string regexp_pattern = @"\<a href=""/account/view-profile/.*?\>(?(\<img).*\/>)(?<accname>.+?)\<\/a\>";
             Regex regexp = new Regex(regexp_pattern, RegexOptions.ExplicitCapture);
             MatchCollection matches = regexp.Matches(http_resp);
 

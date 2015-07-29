@@ -179,7 +179,7 @@ namespace POEApi.Model
             catch (Exception ex)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Error building items by tab. Tab data:");
+                sb.AppendLine("Error building items by tab:"+ex.Message+" . Tab data:");
 
                 foreach (var tab in Tabs)
                     sb.AppendLine(string.Format("i = {0}, hidden = {1}, fake = {2}", tab.i, tab.Hidden, tab.IsFakeTab));

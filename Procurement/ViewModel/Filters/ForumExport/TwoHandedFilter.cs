@@ -10,7 +10,10 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public TwoHandedFilter()
             : base("Two")
         {
-            //TODO: RU strings "Двуручная(ый,ое)"
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.handed = "Двуручн";
+            }
         }
     }
 }

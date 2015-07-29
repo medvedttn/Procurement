@@ -5,7 +5,7 @@ namespace Procurement.ViewModel.Filters.ForumExport
 {
     public abstract class XHandFilter : IFilter
     {
-        private string handed;
+        internal string handed;
 
         public XHandFilter(string handed)
         {
@@ -18,7 +18,17 @@ namespace Procurement.ViewModel.Filters.ForumExport
 
         public string Keyword
         {
-            get { return string.Concat(handed, " ", "Handed Weapon"); }
+            get
+            {
+                if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+                {
+                    return string.Concat(handed, "ое оружие"); 
+                }
+                else
+                {
+                    return string.Concat(handed, " ", "Handed Weapon"); 
+                }
+            }
         }
 
         public string Help
@@ -40,8 +50,14 @@ namespace Procurement.ViewModel.Filters.ForumExport
             if (gear.Properties == null)
                 return false;
 
-            //TODO: RU strings "Одноручн","Двуручн"
-            return gear.Properties.Any(p => p.Name.Contains(string.Concat(handed, " ", "Handed")));
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                return gear.Properties.Any(p => p.Name.Contains(handed));
+            }
+            else
+            {
+                return gear.Properties.Any(p => p.Name.Contains(string.Concat(handed, " ", "Handed")));
+            }
         }
     }
 }

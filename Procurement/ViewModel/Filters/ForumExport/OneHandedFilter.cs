@@ -6,7 +6,10 @@ namespace Procurement.ViewModel.Filters.ForumExport
         public OneHandedFilter()
             : base("One")
         { 
-            //TODO: RU strings "Одноручная(ый,ое)"
+            if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
+            {
+                this.handed = "Одноручн";
+            }
         }
     }
 }
