@@ -14,9 +14,10 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="30" />
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="13"/>
+            <RowDefinition Height="53"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="40*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -53,10 +54,10 @@
 
         <CheckBox Name="chkManualSelection" Content="Manual Selection" Grid.Row="3" Foreground="#FFAB9066" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding IsManualSelected, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="0,6" Width="200" />
         
-        <TextBlock Name="txtNotes" Grid.Row="4" Foreground="#FFAB9066" Text="Notes:" VerticalAlignment="Bottom" />
-        <TextBox x:Name="Notes" Grid.Row="5" Grid.ColumnSpan="3" Text="{Binding Notes}" VerticalScrollBarVisibility="Auto" KeyDown="TextBox_KeyDown"/>
+        <TextBlock Name="txtNotes" Grid.Row="4" Foreground="#FFAB9066" Text="Notes:" VerticalAlignment="Top" />
+        <TextBox x:Name="Notes" Grid.Row="5" Grid.ColumnSpan="3" Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Auto" KeyDown="TextBox_KeyDown" Margin="0,1,0,63" Grid.RowSpan="2" />
         
-        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+        <Grid Grid.Row="5" Grid.ColumnSpan="3" Margin="3,46,-3,32" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160" />
                 <ColumnDefinition Width="10" />
@@ -65,6 +66,7 @@
 
             <Button Name="btnSave" Content="Save" Grid.Column="0" Height="25" Width="150" Click="Save_Clicked"/>
             <Button Name="btnSaveImage" Content="Save Image" Grid.Column="2" Height="25" Width="150" Click="SaveImage_Click" HorizontalAlignment="Left" />
-        </Grid>        
+        </Grid>
+        <Button Content="Timestamp" Height="25" Margin="0,0,1,1" Name="btnTimestamp" Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" Click="btnTimestamp_Click"/>
     </Grid>
 </UserControl>

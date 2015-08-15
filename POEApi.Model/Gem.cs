@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace POEApi.Model
 {
@@ -37,17 +39,12 @@ namespace POEApi.Model
             return level;
         }
 
-        protected override int getConcreteHash()
+        protected override string getConcreteHash()
         {
-            var anonomousType = new
-            {
-                f1 = Quality,
-                f2 = this.Requirements != null ? string.Join(string.Empty, this.Requirements.Select(r => string.Concat(r.Name, r.Value)).ToArray()) : string.Empty,
-                f3 = Color,
-                f4 = Socket
-            };
-
-            return anonomousType.GetHashCode();
+            string str_hash_data = Quality.ToString() + Color + Socket.ToString();
+            if (this.Requirements != null) str_hash_data += string.Join(string.Empty, this.Requirements.Select(r => string.Concat(r.Name, r.Value)).ToArray());
+            
+            return getHashSHA1(str_hash_data);
         }
     }
 }

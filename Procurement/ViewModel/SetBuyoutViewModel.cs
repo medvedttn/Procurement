@@ -54,7 +54,14 @@ namespace Procurement.ViewModel
         public string Notes
         {
             get { return notes; }
-            set { notes = value; }
+            set
+            {
+                if (notes != value)
+                {
+                    notes = value;
+                    OnPropertyChanged("Notes");
+                }
+            }
         }
 
         private bool ismanualselected;
@@ -81,6 +88,15 @@ namespace Procurement.ViewModel
             priceInfo.Update(info.Price);
             ismanualselected = info.IsManualSelected;
             Notes = info.Notes;
-        }        
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

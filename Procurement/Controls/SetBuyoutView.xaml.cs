@@ -23,6 +23,7 @@ namespace Procurement.Controls
                 txtNotes.Text = "Примечания:";
                 btnSave.Content = "Сохранить";
                 btnSaveImage.Content = "Сохранить изображение";
+                btnTimestamp.Content = "Текущее время";
             }
         }
 
@@ -59,6 +60,11 @@ namespace Procurement.Controls
             this.Notes.Text += Environment.NewLine;
             this.Notes.CaretIndex = this.Notes.Text.Length;
             e.Handled = true;
+        }
+
+        private void btnTimestamp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Notes.Text += DateTime.Now.ToString() + Environment.NewLine;
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Timers;
 
 namespace Procurement.ViewModel
 {
@@ -23,6 +24,9 @@ namespace Procurement.ViewModel
         private List<int> selected = new List<int>();
         private string text;
         private static List<IVisitor> visitors = null;
+        private Timer timerSinceLastBump;
+        private static TimeSpan timeSinceBump;
+        private string timeBumpText="";
 
         private DelegateCommand copyCommand;
         public DelegateCommand CopyCommand
@@ -80,6 +84,16 @@ namespace Procurement.ViewModel
                 text = value;
                 onPropertyChanged("Text");
             }
+        }
+
+        public string TimeBumpText
+        {
+            get { return timeBumpText; }
+            //set
+            //{
+            //    timeBumpText = value;
+            //    onPropertyChanged("TimeBumpText");
+            //}
         }
 
 
@@ -148,15 +162,33 @@ namespace Procurement.ViewModel
                         var threadBumped = ApplicationState.Model.BumpThread(Settings.ShopSettings[ApplicationState.CurrentLeague].ThreadId, Settings.ShopSettings[ApplicationState.CurrentLeague].ThreadTitle);
 
                         if (threadBumped)
+                        {
+                            //timer since last button click
+                            if (timerSinceLastBump!=null) timerSinceLastBump.Stop();
+                            timeSinceBump = new TimeSpan();
+                            timerSinceLastBump = new Timer(1000.0);
+                            timerSinceLastBump.Elapsed+=new ElapsedEventHandler(timeSinceLastBump_Elapsed);
+                            timerSinceLastBump.Start();
                             MessageBox.Show(Procurement.MessagesRes.ShopThreadSuccessfullyBumped, Procurement.MessagesRes.ThreadBumped, MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                         else
+                        {
                             MessageBox.Show(Procurement.MessagesRes.ErrorBumpingShopThreadDetailsLoggedToDebuginfoLog, Procurement.MessagesRes.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     catch (ForumThreadException)
                     {
                         MessageBox.Show(Procurement.MessagesRes.TheThreadTitleSuppliedInYourSettingsDoesNotMatch, Procurement.MessagesRes.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 });
+        }
+
+        private void timeSinceLastBump_Elapsed(Object sender, ElapsedEventArgs e)
+        {
+            timeSinceBump+=new TimeSpan(0, 0, 1);
+            timeBumpText = timeSinceBump.ToString();
+            //if (timeSinceBump.TotalHours > 1.0) ForumExport.DataContextProperty. = "1";
+            onPropertyChanged("TimeBumpText");
         }
 
         private void postToThread(object obj)
@@ -377,5 +409,6 @@ namespace Procurement.ViewModel
         {
             stashItems.ForEach(si => si.IsChecked = value);
         }
+
     }
 }

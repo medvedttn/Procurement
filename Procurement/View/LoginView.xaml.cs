@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System;
 using POEApi.Model;
 using System.Linq;
+using System.Globalization;
 
 namespace Procurement.View
 {
@@ -49,6 +50,7 @@ namespace Procurement.View
                     //RU GUI
                     lblEmail.Content = "Эл.почта";
                     lblPassword.Content = "ID сессии";
+                    lblScale.Content = "Масштаб окна";
 
                     ChangeImageStyle(LoginButton.Content as Image, LoginWindowViewModel.ServerType);
                     ChangeImageStyle(OfflineButton.Content as Image, LoginWindowViewModel.ServerType);
@@ -108,6 +110,52 @@ namespace Procurement.View
                     button_img.Style = new_style;
                 }
             }
+        }
+
+        private void cmbScale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbScale.SelectedItem != null)
+            {
+                float old_scale;
+                if (!float.TryParse(Settings.UserSettings["WindowScale"], System.Globalization.NumberStyles.Float, new CultureInfo("en-US"), out old_scale))
+                {
+                    old_scale = 1.0f;
+                }
+                string str_scale = ((ComboBoxItem)cmbScale.SelectedItem).Content.ToString().Replace("%","");
+                float scale = float.Parse(str_scale)/100.0f;
+
+                if (old_scale != scale)
+                {
+                    Settings.UserSettings["WindowScale"] = scale.ToString("f", new CultureInfo("en-US"));
+                    Settings.Save();
+                    MessageBox.Show(Procurement.MessagesRes.RestartApplicationToApplyWindowScaleSetting, "Procurement", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
+        private void cmbScale_Loaded(object sender, RoutedEventArgs e)
+        {
+            float old_scale;
+            string[] standard_scales = {"100%","90%","80%","75%","70%"};
+            if (!float.TryParse(Settings.UserSettings["WindowScale"], System.Globalization.NumberStyles.Float, new CultureInfo("en-US"), out old_scale))
+            {
+                old_scale = 1.0f;
+            }
+
+            string str_old_scale = (old_scale * 100.0f).ToString()+"%";
+
+            if (standard_scales.Contains(str_old_scale))
+            {
+                cmbScale.SelectedItem = cmbScale.Items.Cast<ComboBoxItem>().FirstOrDefault(cmbi => cmbi.Content.ToString() == str_old_scale);
+            }
+            else
+            {
+                ComboBoxItem newItem= new ComboBoxItem();
+                newItem.Content=str_old_scale;
+                cmbScale.Items.Add(newItem);
+                cmbScale.SelectedItem = newItem;
+            }
+
         }
     }
 }

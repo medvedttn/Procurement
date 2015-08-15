@@ -18,13 +18,14 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="473*" />
+                    <ColumnDefinition Width="85*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="18"/>
                     <RowDefinition Height="8" />
-                    <RowDefinition Height="5"/>
+                    
                     <RowDefinition Height="68"/>
                     <RowDefinition Height="130"/>
                     <RowDefinition Height="10*" />
@@ -34,9 +35,9 @@
                 <Label x:Name="lblPassword" Content="Password" FontFamily="../Resources/#Fontin" Foreground="#FFAB9066" FontSize="14" VerticalAlignment="Top" Margin="0,47,0,0" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"></Label>
 
                 <TextBox Name="txtLogin" Text="{Binding Email}" Grid.Column="1" Height="22" Width="330" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black" BorderBrush="#FF76591B" Foreground="#FFAB9066" SelectionBrush="#FFCABE9F" Margin="0,17,0,0"></TextBox>
-                <PasswordBox Name="txtPassword" Grid.Column="1" Height="22" Width="330" Background="Black" BorderBrush="#FF76591B" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="#FFAB9066" SelectionBrush="#FFCABE9F" Margin="0,13,0,0" Grid.RowSpan="2" Grid.Row="1" />
+                <PasswordBox Name="txtPassword" Grid.Column="1" Height="22" Width="330" Background="Black" BorderBrush="#FF76591B" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="#FFAB9066" SelectionBrush="#FFCABE9F" Margin="0,13,0,0" Grid.RowSpan="3" Grid.Row="1" />
 
-                <Grid Grid.Row="4" Grid.Column="1">
+                <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="6,25,-6,6" Height="37" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="90"/>
                         <ColumnDefinition Width="90"/>
@@ -74,17 +75,13 @@
                         </Image>
                     </Button>
 
-                    
-                    <!--<ResourceDictionary Source="..\Controls\ExpressionDark.xaml">
-                    </ResourceDictionary>-->
-
                 </Grid>
-                <Grid Grid.Column="1" Height="59" HorizontalAlignment="Left" Margin="181,9,0,0" Name="grid1" VerticalAlignment="Top" Width="149" Grid.Row="4" Grid.RowSpan="2">
+                <Grid Grid.Column="1" Height="59" HorizontalAlignment="Left" Margin="181,9,0,0" Name="grid1" VerticalAlignment="Top" Width="149" Grid.Row="3" Grid.RowSpan="2">
                     <Grid.Resources>
                         <ResourceDictionary Source="..\Controls\ExpressionDark.xaml"/>
                     </Grid.Resources>
                     <CheckBox Name="useSession" Content="Use SessionID" ToolTip="Only for International server" HorizontalAlignment="Left" Margin="25,-1,0,0" Height="25" VerticalAlignment="Top" IsChecked="{Binding UseSession}" Foreground="#FFAB9066" FontSize="12" FontWeight="Bold"/>
-                    <ComboBox Name="cmbRealmType" ItemsSource="{Binding}" Foreground="#FFAB9066" Margin="24,30,16,7" SelectionChanged="cmbRealmType_SelectionChanged" Loaded="cmbRealmType_Loaded">
+                    <ComboBox Name="cmbRealmType" ItemsSource="{Binding}" Foreground="#FFAB9066" Margin="25,26,15,11" SelectionChanged="cmbRealmType_SelectionChanged" Loaded="cmbRealmType_Loaded">
                         <ComboBoxItem Content="International" IsSelected="True"/>
                         <ComboBoxItem Content="Garena (RU)" />
                     </ComboBox>
@@ -95,7 +92,19 @@
                 <RichTextBox Name="StatusBox" Width="641" HorizontalAlignment="Left" Margin="2,-74,0,30" Background="Black" BorderBrush="#FF93732D" Focusable="True" Foreground="#FFAB9066" FontFamily="Consolas" BorderThickness="1" IsReadOnly="True" VerticalScrollBarVisibility="Hidden" />
             </Grid>
         </Grid>
-
+        <Grid Grid.Column="1" Margin="436,0,51,561">
+            <Grid.Resources>
+                <ResourceDictionary Source="..\Controls\ExpressionDark.xaml"/>
+            </Grid.Resources>
+            <Label x:Name="lblScale" Content="Window Scale" Margin="25,17,67,3" FontFamily="../Resources/#Fontin" Foreground="#FFAB9066" FontSize="12" VerticalAlignment="Center"></Label>
+            <ComboBox Foreground="#FFAB9066" Margin="110,15,6,2" Name="cmbScale" SelectionChanged="cmbScale_SelectionChanged" Loaded="cmbScale_Loaded">
+                <ComboBoxItem Content="100%"/>
+                <ComboBoxItem Content="90%" />
+                <ComboBoxItem Content="80%" />
+                <ComboBoxItem Content="75%" />
+                <ComboBoxItem Content="70%" />
+            </ComboBox>
+        </Grid>
     </Grid>
     <UserControl.Resources>
     <!--<ResourceDictionary Source="..\Controls\ExpressionDark.xaml" />-->

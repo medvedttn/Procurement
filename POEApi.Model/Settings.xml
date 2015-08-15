@@ -86,6 +86,7 @@
     <Setting name="PoeTradeRefreshEnabled" value="false" />
     <Setting name="PoeTradeRefreshUrl" value="" />
     <Setting name="ServerType" value="" />
+    <Setting name="WindowScale" value="1.0" />
   </UserSettings>
   <ProxySettings>
     <Setting name="Enabled" value="False" />

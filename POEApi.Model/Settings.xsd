@@ -48,6 +48,7 @@
               <xs:element name="BuyoutItemsOnlyVisibleInBuyoutsTag" type="BuyoutItemsOnlyVisibleInBuyoutsTag" minOccurs="1" maxOccurs="1" />
               <xs:element name="CheckForUpdates" type="CheckForUpdates" minOccurs="1" maxOccurs="1" />
               <xs:element name="SeverType" type="ServerType" minOccurs="0" maxOccurs="1" />
+              <xs:element name="WindowScale" type="WindowScale" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -186,6 +187,10 @@
   </xs:complexType>
   <xs:complexType name="ServerType">
     <xs:attribute name="name" fixed="ServerType" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="WindowScale">
+    <xs:attribute name="name" fixed="WindowScale" type="xs:string" use="optional"/>
     <xs:attribute name="value" type="xs:string" use="optional"/>
   </xs:complexType>
 

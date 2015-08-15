@@ -1,4 +1,5 @@
 ﻿using POEApi.Model;
+using System.Linq;
 
 namespace Procurement.ViewModel.Filters.ForumExport
 {
@@ -39,9 +40,14 @@ namespace Procurement.ViewModel.Filters.ForumExport
 
         public bool Applicable(Item item)
         {
+            Gear gear = item as Gear;
+            if (gear != null && gear.SocketedItems.Any(x => Applicable(x)))
+                return true; 
+
             Gem gem = item as Gem;
             if (gem == null)
                 return false;
+
             if (Procurement.ViewModel.LoginWindowViewModel.ServerType == "Garena (RU)")
             {
                 return item.Properties[0].Name.Contains("Поддержка");

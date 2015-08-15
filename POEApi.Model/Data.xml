@@ -325,6 +325,11 @@
       <Item name="Shrine Map"/>
       <Item name="Courtyard Map"/>
       <Item name="Palace Map"/>
+      <Item name="Untainted Paradise"/>
+      <Item name="The Apex of Sacrifice"/>
+      <Item name="Vaults of Atziri"/>
+      <Item name="Poorjoy's Asylum"/>
+      <Item name="The Alluring Abyss"/>
 
       <Item name="Pit Map"/>
       <Item name="Quarry Map"/>
@@ -338,6 +343,8 @@
       <Item name="Abyss Map"/>
       <Item name="Colosseum Map"/>
       <Item name="Core Map"/>
+      <Item name="Phantasmagoria Map"/>
+      <Item name="Malformation Map"/>
     </GearBaseType>
     <GearBaseType name="Gloves">
       <Item name="Iron Gauntlets"/>
@@ -508,6 +515,8 @@
       
       <Item name="Ancient Axe"/>
       <Item name="Dagger-Axe"/>
+      <Item name="Runic Hatchet"/>
+      <Item name="Fleshripper"/>
     </GearBaseType>
     <GearBaseType name="Claw">
       <Item name="Nailed Fist"/>
@@ -534,6 +543,7 @@
       <Item name="Terror Claw"/>
 
       <Item name="Deerhorn Claw"/>
+      <Item name="Gemini Claw"/>
     </GearBaseType>
     <GearBaseType name="Bow">
       <Item name="Crude Bow"/>
@@ -561,6 +571,7 @@
       <Item name="Playtest Bow"/>
 
       <Item name="Reflex Bow"/>
+      <Item name="Assassin Bow"/>
     </GearBaseType>
     <GearBaseType name="Dagger">
       <Item name="Glass Shank"/>
@@ -589,6 +600,7 @@
       <Item name="Ancient Blade"/>
       <Item name="Curved Blade"/>
       <Item name="Parrying Dagger"/>
+      <Item name="Sai"/>
     </GearBaseType>
     <GearBaseType name="Mace">
       <Item name="Driftwood Club"/>
@@ -633,10 +645,12 @@
       <Item name="Meatgrinder"/>
       <Item name="Imperial Maul"/>
       <Item name="Terror Maul"/>
-      <Item name="Coronal Maul"/>
 
       <Item name="Snake Mace"/>
       <Item name="Spiked Maul"/>
+      <Item name="Sambar Sceptre"/>
+      <Item name="Behemoth Mace"/>
+      <Item name="Coronal Maul"/>
     </GearBaseType>
     <GearBaseType name="Quiver">
       <Item name="Rugged Quiver"/>
@@ -702,6 +716,7 @@
       <Item name="Judgement Staff"/>
 
       <Item name="Blade Staff"/>
+      <Item name="Eclipse Staff"/>
     </GearBaseType>
     <GearBaseType name="Sword">
       <Item name="Rusted Sword"/>
@@ -769,9 +784,13 @@
       <Item name="Vaal Greatsword"/>
       <Item name="Lion Sword"/>
       <Item name="Infernal Sword"/>
+      <Item name="Grappler"/>
 
       <Item name="Hook Sword"/>
       <Item name="Small Sword"/>
+      <Item name="Exquisite Blade"/>
+      <Item name="Tiger Hook"/>
+      <Item name="Dragoon Sword"/>
     </GearBaseType>
     <GearBaseType name="Shield">
       <Item name="Splintered Tower Shield"/>
@@ -888,6 +907,7 @@
       <Item name="Prophecy Wand"/>
 
       <Item name="Grinning Wand"/>
+      <Item name="Profane Wand"/>
     </GearBaseType>
     <GearBaseType name="DivinationCard">
       <Item name="Abandoned Wealth"/>

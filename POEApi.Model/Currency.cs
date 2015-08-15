@@ -1,4 +1,7 @@
-﻿namespace POEApi.Model
+﻿using System.Security.Cryptography;
+using System.Text;
+using System.Linq;
+namespace POEApi.Model
 {
     public class Currency : Item
     {
@@ -15,20 +18,11 @@
             this.UniqueIDHash = base.getHash();
         }
 
-        protected override int getConcreteHash()
+        protected override string getConcreteHash()
         {
-            var anonomousType = new
-            {
-                f = this.IconURL,
-                f2 = this.Name,
-                f3 = this.TypeLine,
-                f4 = this.DescrText,
-                f5 = this.X,
-                f6 = this.Y,
-                f7 = this.InventoryId
-            };
-
-            return anonomousType.GetHashCode();
+            string str_hash_data = this.IconURL + this.Name + this.TypeLine + this.DescrText + this.X + this.Y + this.InventoryId;
+            
+            return getHashSHA1(str_hash_data);
         }
     }
 }

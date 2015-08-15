@@ -19,7 +19,7 @@ namespace POEApi.Model
         public static Dictionary<string, string> UserSettings { get; private set; }
         public static Dictionary<string, string> ProxySettings { get; private set; }
         public static Dictionary<string, List<string>> Lists { get; private set; }
-        public static Dictionary<int, ItemTradeInfo> Buyouts { get; private set; }
+        public static Dictionary<string, ItemTradeInfo> Buyouts { get; private set; }
         public static Dictionary<string, string> TabsBuyouts { get; private set; }
         public static Dictionary<string, ShopSetting> ShopSettings { get; private set; }
         public static List<string> PopularGems { get; private set; }
@@ -52,7 +52,7 @@ namespace POEApi.Model
             try
             {
                 buyoutFile = XElement.Load(BUYOUT_LOCATION);
-                Buyouts = new Dictionary<int, ItemTradeInfo>();
+                Buyouts = new Dictionary<string, ItemTradeInfo>();
 
                 if (buyoutFile.Element("ItemBuyouts") != null)
                     Buyouts = loadItemBuyouts();
@@ -68,15 +68,15 @@ namespace POEApi.Model
             }
         }
 
-        private static Dictionary<int, ItemTradeInfo> loadItemBuyouts()
+        private static Dictionary<string, ItemTradeInfo> loadItemBuyouts()
         {            
             var items = buyoutFile.Element("ItemBuyouts").Elements("Item");
             var legacyBuyouts = items.Where(i => i.Attribute("value") != null).Any();
 
             if (legacyBuyouts)
-                return items.ToDictionary(list => (int)list.Attribute("id"), list => new ItemTradeInfo(list.Attribute("value").Value, string.Empty, string.Empty, string.Empty, false));
+                return items.ToDictionary(list => (string)list.Attribute("id"), list => new ItemTradeInfo(list.Attribute("value").Value, string.Empty, string.Empty, string.Empty, false));
 
-            return items.ToDictionary(list => (int)list.Attribute("id"), list => new ItemTradeInfo(tryGetValue(list, "BuyoutValue"), tryGetValue(list, "PriceValue"), tryGetValue(list, "CurrentOfferValue"), tryGetValue(list, "Notes"), bool.Parse(tryGetValue(list, "IsManuallySelected"))));
+            return items.ToDictionary(list => (string)list.Attribute("id"), list => new ItemTradeInfo(tryGetValue(list, "BuyoutValue"), tryGetValue(list, "PriceValue"), tryGetValue(list, "CurrentOfferValue"), tryGetValue(list, "Notes"), bool.Parse(tryGetValue(list, "IsManuallySelected"))));
         }
 
         private static void loadShopSettings()
@@ -163,9 +163,19 @@ namespace POEApi.Model
         {
             foreach (string key in UserSettings.Keys)
             {
-                XElement update = settingsFile.Elements("UserSettings").Descendants().First(x => x.Attribute("name").Value == key);
-                if (UserSettings[key] != null)
-                    update.Attribute("value").SetValue(UserSettings[key]);
+                XElement update = settingsFile.Elements("UserSettings").Descendants().FirstOrDefault(x => x.Attribute("name").Value == key);
+                if (update != null)
+                {
+                    if (UserSettings[key] != null) update.Attribute("value").SetValue(UserSettings[key]);
+                }
+                else
+                {
+                    XElement add_xml = new XElement("Setting", "");
+                    add_xml.SetAttributeValue("name",key);
+                    add_xml.SetAttributeValue("value", UserSettings[key]);
+
+                    settingsFile.Element("UserSettings").Add(add_xml);
+                }
             }
 
             foreach (OrbType key in CurrencyRatios.Keys)
@@ -191,7 +201,7 @@ namespace POEApi.Model
         {
             buyoutFile.Element("ItemBuyouts").RemoveNodes();
 
-            foreach (int key in Buyouts.Keys)
+            foreach (string key in Buyouts.Keys)
             {
                 XElement buyout = new XElement("Item", new XAttribute("id", key), new XAttribute("BuyoutValue", Buyouts[key].Buyout), new XAttribute("PriceValue", Buyouts[key].Price), new XAttribute("CurrentOfferValue", Buyouts[key].CurrentOffer), new XAttribute("Notes", Buyouts[key].Notes), new XAttribute("IsManuallySelected", Buyouts[key].IsManualSelected));
                 buyoutFile.Element("ItemBuyouts").Add(buyout);

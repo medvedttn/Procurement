@@ -326,6 +326,11 @@
       <Item name="Карта подворья"/>
       <Item name="Карта дворца"/>
       <Item name="Карта храма ваал"/>
+      <Item name="Untainted Paradise"/>
+      <Item name="The Apex of Sacrifice"/>
+      <Item name="Vaults of Atziri"/>
+      <Item name="Poorjoy's Asylum"/>
+      <Item name="The Alluring Abyss"/>
 
       <Item name="Карта ямы"/>
       <Item name="Карта каменоломни"/>
@@ -339,6 +344,8 @@
       <Item name="Карта бездны"/>
       <Item name="Карта колизея"/>
       <Item name="Карта сердца"/>
+      <Item name="Phantasmagoria Map"/>
+      <Item name="Malformation Map"/>
     </GearBaseType>
     <GearBaseType name="Gloves">
       <Item name="Железные рукавицы"/>

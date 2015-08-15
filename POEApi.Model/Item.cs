@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace POEApi.Model
 {
@@ -40,7 +42,7 @@ namespace POEApi.Model
         public List<Property> Properties { get; set; }
         public bool IsQuality { get; private set; }
         public int Quality { get; private set; }
-        public int UniqueIDHash { get; set; }
+        public string UniqueIDHash { get; set; }
         public bool Corrupted { get; private set; }
         public List<string> Microtransactions { get; set; }
 
@@ -109,24 +111,25 @@ namespace POEApi.Model
             return "http://webcdn.pathofexile.com" + url;
         }
 
-        protected abstract int getConcreteHash();
+        protected abstract string getConcreteHash();
 
-        protected int getHash()
+        protected string getHash()
         {
-            var anonomousType = new
-            {
-                f = this.IconURL,
-                f1 = this.League,
-                f2 = this.Name,
-                f3 = this.TypeLine,
-                f4 = this.DescrText,
-                f5 = this.Explicitmods != null ? string.Join(string.Empty, this.Explicitmods.ToArray()) : string.Empty,
-                f6 = this.Properties != null ? string.Join(string.Empty, this.Properties.Select(p => string.Concat(p.DisplayMode, p.Name, string.Join(string.Empty, p.Values.Select(t => string.Concat(t.Item1, t.Item2)).ToArray()))).ToArray()) : string.Empty,
-                f7 = getConcreteHash()
-            };
+            string str_hash_data = this.IconURL + this.League + this.Name + this.TypeLine + this.DescrText;
+            if (this.Explicitmods != null) str_hash_data += string.Join(string.Empty, this.Explicitmods.ToArray());
+            if (this.Properties != null) str_hash_data += string.Join(string.Empty, this.Properties.Select(p => string.Concat(p.DisplayMode, p.Name, string.Join(string.Empty, p.Values.Select(t => string.Concat(t.Item1, t.Item2)).ToArray()))).ToArray());
+            str_hash_data += getConcreteHash();
+            
+            return getHashSHA1(str_hash_data);
+        }
 
-            //TODO: make GetHashCode stable and portable (MD5,SHA1/2).
-            return anonomousType.GetHashCode();
+        protected string getHashSHA1(string hash_data)
+        {
+            string sha1_result = "";
+            SHA1Managed sha1enc = new SHA1Managed();
+            byte[] sha1=sha1enc.ComputeHash(Encoding.UTF8.GetBytes(hash_data));
+            sha1_result = string.Join("", sha1.Select(b => b.ToString("X2")).ToArray());
+            return sha1_result;
         }
 
         protected Rarity getRarity(JSONProxy.Item item)

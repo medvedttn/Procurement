@@ -449,6 +449,15 @@ namespace Procurement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart application to apply window scale setting!.
+        /// </summary>
+        internal static string RestartApplicationToApplyWindowScaleSetting {
+            get {
+                return ResourceManager.GetString("RestartApplicationToApplyWindowScaleSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings not found!.
         /// </summary>
         internal static string SettingsNotFound {

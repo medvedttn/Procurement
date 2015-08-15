@@ -13,9 +13,9 @@ namespace POEApi.Model
 
         }
 
-        protected override int getConcreteHash()
+        protected override string getConcreteHash()
         {
-            return 0;
+            return "0";
         }
     }
 }

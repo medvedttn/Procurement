@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
-
+using System.Security.Cryptography;
+using System.Text;
+using System.Linq;
 namespace POEApi.Model
 {
     public class Map : Item
@@ -18,16 +20,11 @@ namespace POEApi.Model
             this.UniqueIDHash = base.getHash();
         }
 
-        protected override int getConcreteHash()
+        protected override string getConcreteHash()
         {
-            var anonomousType = new
-            {
-                f1 = Rarity,
-                f2 = MapLevel,
-                f3 = MapQuantity,
-            };
-
-            return anonomousType.GetHashCode();
+            string str_hash_data = Rarity.ToString() + MapLevel.ToString() + MapQuantity.ToString();
+            
+            return getHashSHA1(str_hash_data);
         }
     }
 }

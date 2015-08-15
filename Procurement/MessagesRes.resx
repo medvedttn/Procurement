@@ -321,4 +321,7 @@ It is either missing from settings.xml or incorrectly configured. The default se
   <data name="wDPSPhysDamageProperty" xml:space="preserve">
     <value>Physical Damage</value>
   </data>
+  <data name="RestartApplicationToApplyWindowScaleSetting" xml:space="preserve">
+    <value>Restart application to apply window scale setting!</value>
+  </data>
 </root>

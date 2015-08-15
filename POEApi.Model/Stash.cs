@@ -143,13 +143,13 @@ namespace POEApi.Model
                 }
 
                 XElement buyoutFile = XElement.Load(POEApi.Model.Settings.BUYOUT_LOCATION);
-                Dictionary<int, ItemTradeInfo> Buyouts = new Dictionary<int, ItemTradeInfo>();
+                Dictionary<string, ItemTradeInfo> Buyouts = new Dictionary<string, ItemTradeInfo>();
 
                 if (buyoutFile.Element("ItemBuyouts") != null) Buyouts = loadItemBuyouts(buyoutFile);
                 itemsByTab = tabs.ToDictionary(kvp => kvp, kvp => items.Where(i => i.InventoryId == kvp).ToList());
 
                 //check if buyout item is manually selected
-                foreach (KeyValuePair<int,ItemTradeInfo> curr_buyout_item in Buyouts)
+                foreach (KeyValuePair<string,ItemTradeInfo> curr_buyout_item in Buyouts)
                 {
                     foreach (List<Item> curr_tab_item in itemsByTab.Values)
                     {
@@ -191,15 +191,15 @@ namespace POEApi.Model
             }
         }
 
-        private Dictionary<int, ItemTradeInfo> loadItemBuyouts(XElement buyoutFile)
+        private Dictionary<string, ItemTradeInfo> loadItemBuyouts(XElement buyoutFile)
         {
             var items = buyoutFile.Element("ItemBuyouts").Elements("Item");
             var legacyBuyouts = items.Where(i => i.Attribute("value") != null).Any();
 
             if (legacyBuyouts)
-                return items.ToDictionary(list => (int)list.Attribute("id"), list => new ItemTradeInfo(list.Attribute("value").Value, string.Empty, string.Empty, string.Empty, false));
+                return items.ToDictionary(list => (string)list.Attribute("id"), list => new ItemTradeInfo(list.Attribute("value").Value, string.Empty, string.Empty, string.Empty, false));
 
-            return items.ToDictionary(list => (int)list.Attribute("id"), list => new ItemTradeInfo(tryGetValue(list, "BuyoutValue"), tryGetValue(list, "PriceValue"), tryGetValue(list, "CurrentOfferValue"), tryGetValue(list, "Notes"), bool.Parse(tryGetValue(list, "IsManuallySelected"))));
+            return items.ToDictionary(list => (string)list.Attribute("id"), list => new ItemTradeInfo(tryGetValue(list, "BuyoutValue"), tryGetValue(list, "PriceValue"), tryGetValue(list, "CurrentOfferValue"), tryGetValue(list, "Notes"), bool.Parse(tryGetValue(list, "IsManuallySelected"))));
         }
 
         private string tryGetValue(XElement list, string key)

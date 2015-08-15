@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using POEApi.Model;
 using Procurement.View;
+using System.Globalization;
 
 namespace Procurement.ViewModel
 {
@@ -43,6 +44,24 @@ namespace Procurement.ViewModel
                 HeaderHeight = 169;
                 FooterHeight = 138;
             }
+
+            double Scale=1.0;
+            if (Settings.UserSettings.ContainsKey("WindowScale"))
+            {
+                if (!double.TryParse(Settings.UserSettings["WindowScale"], System.Globalization.NumberStyles.Float, new CultureInfo("en-US"), out Scale))
+                {
+                    Scale = 1.0;
+                }
+            }
+            else
+            {
+                Settings.UserSettings.Add("WindowScale", "1.0");
+                Settings.Save();
+            }
+
+            if (Scale <= 0 || Scale > 10) Scale = 1.0;
+            layout.AppScaleTransform.ScaleX = Scale;
+            layout.AppScaleTransform.ScaleY = Scale;
 
             MenuButtonCommand = new DelegateCommand(execute);
             mainView = layout;

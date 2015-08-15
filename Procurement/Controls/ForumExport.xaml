@@ -31,7 +31,8 @@
                 <ComboBox Grid.Row="3" Height="22"  Style="{Binding}" HorizontalAlignment="Left" Margin="10,0,0,0" ItemsSource="{Binding AvailableTemplates}" SelectedValue="{Binding CurrentTemplate, Mode=TwoWay}"/>
 
                 <Button Name="btnUpdateForum" Grid.Row="4" Content="Update Forum Thread" Height="22" Width="159" Style="{Binding}" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding PostToThreadCommand}" IsEnabled="{Binding LoggedIn}" />
-                <Button Name="btnBumpForum" Grid.Row="5" Content="Bump Forum Thread" Height="22" Width="159" Style="{Binding}" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding BumpThreadCommand}"  IsEnabled="{Binding LoggedIn}" />
+                <Button Name="btnBumpForum" Grid.Row="5" Content="Bump Forum Thread" Height="22" Width="159" Style="{Binding}" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding BumpThreadCommand}"  IsEnabled="{Binding LoggedIn}" HorizontalContentAlignment="Left" />
+                <Label Name="lblTimer" Content="{Binding TimeBumpText}" Margin="112,1,17,0" Grid.Row="5" Panel.ZIndex="2" DataContext="{Binding}" IsHitTestVisible="False" FontSize="12" HorizontalAlignment="Center" Padding="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontStyle="Normal" />
 
                 <ScrollViewer Grid.Row="6" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
                    <ItemsControl ItemsSource="{Binding StashItems}" Margin="10,10,10,10" x:Name="CheckBoxList">
