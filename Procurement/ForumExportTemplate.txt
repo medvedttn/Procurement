@@ -16,14 +16,14 @@ Please message me here or ingame if something catches your eye. My IGN is {IGN}.
 {VaalFragments}
 {VaalUberFragments}
 [/spoiler]
-[spoiler="          66-69          "]
-{66Maps}{67Maps}{68Maps}{69Maps}
+[spoiler="   66-69 (Tier 1-2)    "]
+{1Maps}{2Maps}
 [/spoiler]
-[spoiler="          70-78          "]
-{70Maps}{71Maps}{72Maps}{73Maps}{74Maps}{75Maps}{76Maps}{77Maps}{78Maps}
+[spoiler="   70-78 (Tier 3-11)   "]
+{3Maps}{4Maps}{5Maps}{6Maps}{7Maps}{8Maps}{9Maps}{10Maps}{11Maps}
 [/spoiler]
-[spoiler="          79-82          "]
-{79Maps}{80Maps}{81Maps}{82Maps}
+[spoiler="   79-82 (Tier 12-15)  "]
+{12Maps}{13Maps}{14Maps}{15Maps}
 [/spoiler]
 [/spoiler]
 [spoiler="          Jewels         "]

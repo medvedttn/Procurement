@@ -64,8 +64,8 @@ namespace POEApi.Model
             this.H = item.H;
             this.IconURL = getIconUrl(item.Icon);
             this.League = item.League;
-            this.Name = item.Name;
-            this.TypeLine = item.TypeLine;
+            this.Name = ParseNameSuffixes(item.Name);
+            this.TypeLine = ParseNameSuffixes(item.TypeLine);
             this.DescrText = item.DescrText;
             this.X = item.X;
             this.Y = item.Y;
@@ -98,8 +98,18 @@ namespace POEApi.Model
 
             this.IsSelectedManually = false;
             this.ArtFilename = item.ArtFilename;
+        }
 
-            //TODO : get itemlvl from JSON (currently not returned by JSON)
+        private string ParseNameSuffixes(string src_name)
+        {
+            string result = src_name;
+            if (src_name != "")
+            {
+                int suffix_end_pos = src_name.LastIndexOf(">>");
+                if (suffix_end_pos > 1) result = src_name.Substring(suffix_end_pos + 2);
+            }
+
+            return result;
         }
 
         private string getIconUrl(string url)

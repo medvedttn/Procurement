@@ -18,9 +18,10 @@ namespace POEApi.Model
                 if (item.frameType == 5)
                     return new Currency(item);
 
-                if (item.TypeLine.Contains(POEApi.Model.ServerTypeRes.MapText) && item.DescrText != null && item.DescrText.Contains(POEApi.Model.ServerTypeRes.MapDescText))
+                //changed to "Map Tier" prop
+                if (item.Properties!=null && item.Properties[0].Name.Contains(POEApi.Model.ServerTypeRes.MapText) && item.DescrText != null && item.DescrText.Contains(POEApi.Model.ServerTypeRes.MapDescText))
                     return new Map(item);
-
+                
                 return new Gear(item);
             }
             catch (Exception ex)

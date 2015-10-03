@@ -121,7 +121,7 @@
     <value>right click this item then left click a location on the ground to create the object.</value>
   </data>
   <data name="MapText" xml:space="preserve">
-    <value>Map</value>
+    <value>Map Tier</value>
   </data>
   <data name="MapDescText" xml:space="preserve">
     <value>Travel to this Map</value>

@@ -739,6 +739,9 @@
   <ItemGroup>
     <Resource Include="Images\ItemHover\DivinationCard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\medved_eat.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "Release"=="$(ConfigurationName)" (

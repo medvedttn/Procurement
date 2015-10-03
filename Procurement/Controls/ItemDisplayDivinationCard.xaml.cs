@@ -34,7 +34,6 @@ namespace Procurement.Controls
         {
             DivinationCardItemHoverViewModel dcvm = this.DataContext as DivinationCardItemHoverViewModel;
             
-            //TODO: save and load card to Common images folder
             itemImage=dcvm.getImageDivinationCard(dcvm.Item);
             imgArtFilename.Source = itemImage.Source;
             txtFlavText.Text = dcvm.FlavText;

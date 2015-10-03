@@ -367,7 +367,7 @@ namespace POEApi.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map.
+        ///   Looks up a localized string similar to Map Tier.
         /// </summary>
         internal static string MapText {
             get {

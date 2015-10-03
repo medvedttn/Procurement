@@ -340,6 +340,7 @@ namespace POEApi.Model
         public DivinationCardRunner()
             : base(GearType.DivinationCard, Settings.GearBaseTypes[GearType.DivinationCard])
         {
+            incompatibleTypes = new List<string>() { POEApi.Model.ServerTypeRes.GearTypeJewel };
         }
     }
 

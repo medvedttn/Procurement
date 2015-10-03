@@ -345,6 +345,7 @@
       <Item name="Core Map"/>
       <Item name="Phantasmagoria Map"/>
       <Item name="Malformation Map"/>
+      <Item name="Conservatory Map"/>
     </GearBaseType>
     <GearBaseType name="Gloves">
       <Item name="Iron Gauntlets"/>
@@ -973,6 +974,20 @@
       <Item name="The Watcher"/>
       <Item name="The Wind"/>
       <Item name="The Wrath"/>
+
+      <Item name="Assassin's Favour"/>
+      <Item name="Audacity"/>
+      <Item name="The Catalyst"/>
+      <Item name="The Doppelganger"/>
+      <Item name="Hunter's Resolve"/>
+      <Item name="The Inoculated"/>
+      <Item name="Lantador's Lost Love"/>
+      <Item name="Loyalty"/>
+      <Item name="Pride Before the Fall"/>
+      <Item name="Scholar of the Seas"/>
+      <Item name="The Tower"/>
+      <Item name="The Vast"/>
+      <Item name="The Twins"/>
     </GearBaseType>
   </GearBaseTypes>
 </Data>

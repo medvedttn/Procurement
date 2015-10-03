@@ -60,7 +60,8 @@
                             </Image.Style>
                         </Image>
                     </Button>
-                    <Image Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="4" Height="118" HorizontalAlignment="Stretch" Name="image1" Stretch="Uniform" VerticalAlignment="Top" Width="285" Margin="0,6,0,0" Source="/Procurement;component/Images/medved-relax.png" />
+                    <Image Grid.Column="3" Grid.RowSpan="4" Height="118" HorizontalAlignment="Stretch" Name="image2" Stretch="Uniform" VerticalAlignment="Top" Margin="0,6,78,0" Source="/Procurement;component/Images/medved_eat.png" Panel.ZIndex="-1" />
+                    <Image Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="4" Height="118" HorizontalAlignment="Stretch" Name="image1" Stretch="Uniform" VerticalAlignment="Top" Margin="91,6,0,0" Source="/Procurement;component/Images/medved-relax.png" />
                 </Grid>
             </Border>
 

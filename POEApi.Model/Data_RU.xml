@@ -326,11 +326,11 @@
       <Item name="Карта подворья"/>
       <Item name="Карта дворца"/>
       <Item name="Карта храма ваал"/>
-      <Item name="Untainted Paradise"/>
-      <Item name="The Apex of Sacrifice"/>
-      <Item name="Vaults of Atziri"/>
-      <Item name="Poorjoy's Asylum"/>
-      <Item name="The Alluring Abyss"/>
+      <Item name="Нетронутый рай"/>
+      <Item name="Вершина жертвоприношений"/>
+      <Item name="Сокровищница Азири"/>
+      <Item name="Богадельня Паршута"/>
+      <Item name="Манящая бездна"/>
 
       <Item name="Карта ямы"/>
       <Item name="Карта каменоломни"/>
@@ -346,6 +346,7 @@
       <Item name="Карта сердца"/>
       <Item name="Phantasmagoria Map"/>
       <Item name="Malformation Map"/>
+      <Item name="Conservatory Map"/>
     </GearBaseType>
     <GearBaseType name="Gloves">
       <Item name="Железные рукавицы"/>
@@ -962,6 +963,21 @@
       <Item name="Наблюдатель"/>
       <Item name="Ветер"/>
       <Item name="Гнев"/>
+
+      <!--TODO:translate this-->
+      <Item name="Assassin's Favour"/>
+      <Item name="Audacity"/>
+      <Item name="The Catalyst"/>
+      <Item name="The Doppelganger"/>
+      <Item name="Hunter's Resolve"/>
+      <Item name="The Inoculated"/>
+      <Item name="Lantador's Lost Love"/>
+      <Item name="Loyalty"/>
+      <Item name="Pride Before the Fall"/>
+      <Item name="Scholar of the Seas"/>
+      <Item name="The Tower"/>
+      <Item name="The Vast"/>
+      <Item name="The Twins"/>
     </GearBaseType>
   </GearBaseTypes>
 </Data>
