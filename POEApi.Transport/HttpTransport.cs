@@ -22,6 +22,7 @@ namespace POEApi.Transport
 
         private enum HttpMethod { GET, POST }
 
+        private const string baseURL = "www.pathofexile.com";
         private const string loginURL = @"https://www.pathofexile.com/login";
         private const string characterURL = @"https://www.pathofexile.com/character-window/get-characters?accountName={0}";
         private const string stashURL = @"https://www.pathofexile.com/character-window/get-stash-items?league={0}&tabs=1&tabIndex={1}&accountName={2}";
@@ -38,6 +39,7 @@ namespace POEApi.Transport
         private const string myAccountURL = @"https://www.pathofexile.com/my-account";
 
         //Garena+ RU strings
+        private const string baseURL_ru = "web.poe.garena.ru";
         private const string loginURL_ru = @"https://web.poe.garena.ru/login";
         private const string myAccountURL_ru = @"https://web.poe.garena.ru/my-account";
         private const string characterURL_ru = @"https://web.poe.garena.ru/character-window/get-characters?accountName={0}";
@@ -72,21 +74,10 @@ namespace POEApi.Transport
 
         public string Authenticate(string email, SecureString password, bool useSessionID, string current_accname, string server_type)
         {
-            if (useSessionID)
+            if (useSessionID || server_type == "Garena (RU)")
             {
-                credentialCookies.Add(new System.Net.Cookie("PHPSESSID", password.UnWrap(), "/", "www.pathofexile.com"));
-                HttpWebRequest confirmAuth = getHttpRequest(HttpMethod.GET, loginURL);
-                HttpWebResponse confirmAuthResponse = (HttpWebResponse)confirmAuth.GetResponse();
-
-                if (confirmAuthResponse.ResponseUri.ToString() == loginURL)
-                    throw new LogonFailedException(server_type);
-                return "<SessionID used>";
-            }
-
-            if (server_type=="Garena (RU)")
-            {
-                credentialCookies.Add(new System.Net.Cookie("PHPSESSID", password.UnWrap(), "/", "web.poe.garena.ru"));
-                HttpWebRequest confirmAuth = getHttpRequest(HttpMethod.GET, loginURL_ru);
+                credentialCookies.Add(new System.Net.Cookie("PHPSESSID", password.UnWrap(), "/", getBaseURL(server_type)));
+                HttpWebRequest confirmAuth = getHttpRequest(HttpMethod.GET, getServerTypeURLlogin(server_type));
                 HttpWebResponse confirmAuthResponse = (HttpWebResponse)confirmAuth.GetResponse();
 
                 if (confirmAuthResponse.ResponseUri.ToString() != getServerTypeURLmyaccount(server_type))
@@ -487,6 +478,21 @@ namespace POEApi.Transport
             else if (server_type == "Garena (RU)")
             {
                 active_url = updateShopURL_ru;
+            }
+
+            return active_url;
+        }
+
+        private string getBaseURL(string server_type)
+        {
+            string active_url = "";
+            if (server_type == "International")
+            {
+                active_url = baseURL;
+            }
+            else if (server_type == "Garena (RU)")
+            {
+                active_url = baseURL_ru;
             }
 
             return active_url;
